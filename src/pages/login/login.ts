@@ -1,3 +1,4 @@
+import { ApiserviceProvider } from './../../providers/apiservice/apiservice';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DashboardPage } from '../dashboard/dashboard';
@@ -13,8 +14,12 @@ import { PlanPage } from '../plan/plan';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+loginform={
+  user:'',
+  pass:''
+ 
+}
+  constructor(public navCtrl: NavController, public navParams: NavParams,public api:ApiserviceProvider) {
   }
 
   ionViewDidLoad() {
@@ -25,7 +30,11 @@ export class LoginPage {
     this.navCtrl.push(PlanPage);
   }
   GoToDashboard=()=>{
-    this.navCtrl.setRoot(DashboardPage);
+    console.log(this.loginform);
+    this.api.dologin(this.loginform).subscribe((res:any)=>{
+      console.log(res);
+      this.navCtrl.setRoot(DashboardPage);
+    })
   }
   GoToRegistration=()=>{
     this.navCtrl.push(RegisterPage);

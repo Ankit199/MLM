@@ -14,8 +14,8 @@ readonly url='http://api.contosonatura.com/api/';
     console.log('Hello ApiserviceProvider Provider');
   }
 
-dologin /*login*/ =(objlogin)=>{
-return this._http.post(this.url+`UserLogin/Login/?loginId=${objlogin.login}&password=${objlogin.pass}`,{});
+dologin=(objlogin)=>{
+return this._http.post(this.url+`UserLogin/Login/?loginId=${objlogin.user}&password=${objlogin.pass}`,{});
 }
 getReward/* Reward list */=(fkid)=>{  
   return this._http.get(this.url+`Rewards/MemberRewards/?MemId=${fkid}`,)
