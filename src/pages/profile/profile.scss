@@ -1,0 +1,10 @@
+page-profile {
+.logo{display: inline-block;margin: auto;text-align: center;position: absolute;right: 6px;}
+.logo img{max-height: 20px;}
+ion-card{padding:5px !important;width: calc(100% - 10px);}
+ion-card img{max-width:100% !important; width:auto;}
+
+h2{color: #00872a !important;font-size: 16px !important;font-weight: 700 !important; margin:0 0 10px !important; padding:0 0 10px !important;width: 100% !important;text-align: left; border-bottom:solid 1px #ccc;}
+ion-col{font-size:12px;}
+}
+

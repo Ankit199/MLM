@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-icon name="menu" menuToggle class='menu-icon'></ion-icon>
+      ePIN Request
+      <div class="logo"><img src="../../assets/images/contoso_natura_logo.png"></div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <table>
+      <thead>
+        <tr>
+          <th>Plan</th>
+          <th>Amount</th>
+          <th>No. OF ePins</th>
+          <th>Total Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Plan A 8500</td>
+          <td>8500</td>
+          <td>1</td>
+          <td>8500</td>
+        </tr>
+        <tr>
+          <td>Plan B 4500</td>
+          <td>4500</td>
+          <td>2</td>
+          <td>9000</td>
+        </tr>
+        <tr>
+          <td class="text-right" colspan="3"><strong>TOTAL &nbsp;</strong></td>
+          <td>17,500</td>
+        </tr>
+      </tbody>
+    </table>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+      <ion-label>Member ID:</ion-label>
+      <ion-input placeholder="Contoso"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Member Name:</ion-label>
+      <ion-input placeholder="Contoso"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Payment Amount:</ion-label>
+      <ion-input placeholder="0"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Payment Mode:</ion-label>
+      <ion-select placeholder="Payment Mode">
+        <ion-option value="Cheque">Cheque</ion-option>
+        <ion-option value="DemandDraft">Demand Draft</ion-option>
+        <ion-option value="BankersCheque">Bankers Cheque</ion-option>
+        <ion-option value="BankDeposit">Bank Deposit</ion-option>
+        <ion-option value="OnlineTransaction">Online Transaction</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+  <ion-row>
+    <ion-col col-6>
+      <button ion-button>Submit</button>
+    </ion-col>
+    <ion-col col-6>
+      <button ion-button>Reset</button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <button ion-button>View Join Package</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
