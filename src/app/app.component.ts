@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Platform, NavController, NavParams } from 'ionic-angular';
+import { Platform, NavController, NavParams, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,13 +22,19 @@ import { ContactusPage } from '../pages/contactus/contactus';
 })
 export class MyApp {
   rootPage:any = LoginPage; 
+  username:any='';
   @ViewChild('content') navCtrl: NavController
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public events: Events,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      statusBar.overlaysWebView(false);
       statusBar.styleDefault();
+      statusBar.backgroundColorByHexString('#ffffff');
       splashScreen.hide();
+
+      this.events.subscribe('userinfo', (user) => {
+        console.table(user);
+        this.username=user[0].Title+' ' +user[0].DisplayName;
+      });
     });
   }
   

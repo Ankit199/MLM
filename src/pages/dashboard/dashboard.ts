@@ -1,3 +1,4 @@
+import { SettingsProvider } from './../../providers/settings/settings';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,8 +15,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'dashboard.html',
 })
 export class DashboardPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+dashboard:any=[];
+  constructor(public setting:SettingsProvider,public navCtrl: NavController, public navParams: NavParams) {
+  let settingdb:any =this.setting.getallSettings();
+ debugger;
+  this.dashboard=settingdb.dashboard;
+  console.table(this.dashboard)
   }
 
   ionViewDidLoad() {

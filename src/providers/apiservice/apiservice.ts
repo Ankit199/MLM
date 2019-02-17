@@ -14,11 +14,11 @@ readonly url='http://api.contosonatura.com/api/';
     console.log('Hello ApiserviceProvider Provider');
   }
 
-dologin=(objlogin)=>{
+dologin /* Member Login */=(objlogin)=>{
 return this._http.post(this.url+`UserLogin/Login/?loginId=${objlogin.user}&password=${objlogin.pass}`,{});
 }
 getReward/* Reward list */=(fkid)=>{  
-  return this._http.get(this.url+`Rewards/MemberRewards/?MemId=${fkid}`,)
+  return this._http.post(this.url+`Rewards/MemberRewards/?MemId=${fkid}`,{})
 }
 
 }

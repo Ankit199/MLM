@@ -21,13 +21,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>100 अंक</td>
-          <td>500/-</td>
-          <td>Contoso T-Shirt</td>
+        <tr [style.background-color]="reward.RewardStatus == 'Pending' ? ' ' : 'green'" *ngFor="let reward of rewardlist;let i=index;">
+          <td>{{i+1}}</td>
+          <td>{{reward.TargetPV}} अंक</td>
+          <td>{{reward.RewardAmount}}/-</td>
+          <td>{{reward.RewardName}}</td>
         </tr>
-         <tr>
+         <!-- <tr>
           <td>2</td>
           <td>200 अंक</td>
           <td>1,000/-</td>
@@ -139,7 +139,7 @@
           <td>1,00,000 अंक</td>
           <td>7,00,000/-</td>
           <td>Mahindra KUV - 100</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </ion-card>
