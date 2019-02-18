@@ -20,5 +20,23 @@ return this._http.post(this.url+`UserLogin/Login/?loginId=${objlogin.user}&passw
 getReward/* Reward list */=(fkid)=>{  
   return this._http.post(this.url+`Rewards/MemberRewards/?MemId=${fkid}`,{})
 }
+getstates=()=>{
+  return this._http.post(this.url+`Registration/StateMaster/`,{})
+}
+
+getCitybyStID=(stid)=>{
+  return this._http.post(this.url+`Registration/CityMaster/?StateId=${stid}`,{})
+}
+
+validatesponser=(loginid)=>{  
+  return this._http.post(this.url+`Registration/ValidateUser/?loginID=${loginid}`,{})
+}
+regmember=(obj)=>{
+  return this._http.post(this.url+`Registration/MemberRegistration/ `,obj)
+}
+
+validateepin=(epin)=>{
+  return this._http.post(this.url+`Registration//ValidateEpin/?ePinNo=${epin}`,{})
+}
 
 }
