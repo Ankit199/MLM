@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
 /**
  * Generated class for the PlanPage page.
@@ -10,16 +11,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-plan',
-  templateUrl: 'plan.html',
+  selector: "page-plan",
+  templateUrl: "plan.html"
 })
 export class PlanPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  product: any = [];
+  constructor(
+    public api: ApiserviceProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
+    this.getproduct();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PlanPage');
+    console.log("ionViewDidLoad PlanPage");
   }
 
+  getproduct = () => {
+    this.api.getProduct().subscribe(
+      (res: any) => {
+        this.product = res;
+        console.table(this.product);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  };
 }

@@ -1,12 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the ApiserviceProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ApiserviceProvider {
 readonly url='http://api.contosonatura.com/api/';
@@ -32,11 +26,16 @@ validatesponser=(loginid)=>{
   return this._http.post(this.url+`Registration/ValidateUser/?loginID=${loginid}`,{})
 }
 regmember=(obj)=>{
-  return this._http.post(this.url+`Registration/MemberRegistration/ `,obj)
+ let murl =this.url+`Registration/MemberRegistration/?`+obj;
+ console.log(murl);
+  return this._http.post(murl,{})
 }
 
 validateepin=(epin)=>{
-  return this._http.post(this.url+`Registration//ValidateEpin/?ePinNo=${epin}`,{})
+  return this._http.post(this.url+`Registration/ValidateEpin/?ePinNo=${epin}`,{})
+}
+getProduct=()=>{
+  return this._http.post(this.url+`ProductDetails/ProductMaster/`,{})
 }
 
 }

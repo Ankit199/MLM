@@ -35,6 +35,7 @@ export class RegisterPage {
     branch: '',
     ifsc: ''
   }
+  isValid:boolean=false;
   sponser = {
     code: '',
     name: '',
@@ -74,18 +75,31 @@ export class RegisterPage {
       memberAccNo:this.MemberInfo.ac,
       memberBankName:this.MemberInfo.bank,
       memberBranch:this.MemberInfo.branch,
-      bankAccName:'',
-      bankHolderName:'',
+      bankAccName:'NA',
+      bankHolderName:'NA',
       iFSCCode:this.MemberInfo.ifsc,
       aadharNo:this.MemberInfo.adhar,
       address:this.MemberInfo.address,
-      city:this.MemberInfo.cityname,
+      city:this.MemberInfo.ctid,
       mobile:this.MemberInfo.mobile,
       pinCode:this.MemberInfo.pincode
 
     }
-    this.api.regmember(user).subscribe((res: any) => {
+    let param =`SponsorId=${user.SponsorId}&StateId=${user.StateId}&displayName=${user.displayname}&
+    ePinNo=${user.ePinNo}&memberAccNo=${user.memberAccNo}&memberBankName=${user.memberBankName}&
+    memberBranch=${user.memberBranch}&bankAccName=${user.bankAccName}&bankHolderName=${user.bankHolderName}&
+    iFSCCode=${user.iFSCCode}&aadharNo=${user.aadharNo}&address=${user.address}&city=${user.city}&
+    mobile=${user.mobile}&pinCode=${user.pinCode}`
+    this.api.regmember(param).subscribe((res: any) => {
+      console.log(res);
       loading.dismiss();
+      if(res[0].MSG=='0'){
+        let alert = this.comn.createAlert('Success !', `Member registration was successfully.please save your loginID is ${res[0].LoginId} and password is ${res[0].Password} .`);
+        alert.present();
+      }else{
+        let alert = this.comn.createAlert('Alert!', res[0].Result);
+        alert.present();
+      }
     }, err => {
       loading.dismiss();
       console.log(err);
@@ -121,5 +135,23 @@ export class RegisterPage {
       console.log('validate sponser error' + error);
     })
   }
+
+validateepin=()=>{
+  let loading = this.comn.presentLoadingDefault();
+  loading.present();
+  this.api.validateepin(this.MemberInfo.epin).subscribe((res:any)=>{
+    loading.dismiss();
+    if(res[0].Msg=='1'){
+      let alert = this.comn.createAlert('Success !', res[0].Result);
+      alert.present();
+    }else{
+      let alert = this.comn.createAlert('Alert !',  res[0].Result);
+      alert.present();
+    }
+  },err=>{
+    loading.dismiss();
+    console.log(err);
+  })
+}
 
 }

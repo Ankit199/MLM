@@ -1,3 +1,5 @@
+import { ProfilePageModule } from './../pages/profile/profile.module';
+import { DownlinePageModule } from './../pages/downline/downline.module';
 import { SettingsProvider } from './../providers/settings/settings';
 import { CommonfunctionProvider } from './../providers/commonfunction/commonfunction';
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,6 +48,8 @@ export function provideSettings(storage: Storage) {
 	],
 	imports: [
 		HttpClientModule,
+		ChangepasswordPageModule,
+		ProfilePageModule,
 		IonicStorageModule.forRoot(),
 		RegisterPageModule,
 		LoginPageModule,
@@ -58,6 +62,7 @@ export function provideSettings(storage: Storage) {
 		ForgotpasswordPageModule,
 		BrowserModule,
 		BonuspointPageModule,
+		DownlinePageModule,
 		IonicModule.forRoot(MyApp)
 	],
 	bootstrap: [IonicApp],

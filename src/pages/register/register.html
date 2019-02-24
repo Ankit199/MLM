@@ -12,7 +12,7 @@
     <h2>Sponsor</h2>
     <ion-item>
       <ion-label>Activation Code:</ion-label>
-      <ion-input [(ngModel)]="MemberInfo.epin" placeholder="Activation Code"></ion-input>
+      <ion-input  [(ngModel)]="MemberInfo.epin" (change)='validateepin()' placeholder="Activation Code"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Sponsor Code:</ion-label>

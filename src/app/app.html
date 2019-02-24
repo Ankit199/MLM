@@ -1,6 +1,6 @@
 <ion-menu [content]="content" [swipeEnabled]="false">
   <ion-content class='menu-listing'>
-    <ion-item class="profile-item" menuClose>
+    <ion-item (click)="GotoViewProfile()" class="profile-item" menuClose>
       <div class="profile-picture"> <img src="../../assets/images/no_img.jpg" /> </div>
       <h2 class="user-name">{{username}}</h2>
       <div class="user-address">Lucknow</div>
@@ -9,6 +9,9 @@
       <button ion-item (click)="GoToDashboard()">
       <ion-icon name="speedometer"></ion-icon>
       डैशबोर्ड (Dashboard)</button>
+      <button ion-item (click)="GoToDownline()">
+        <ion-icon name="speedometer"></ion-icon>
+        निचली पंक्ति (Downline)</button>
       <button ion-item (click)="GoToPlan()">
       <ion-icon name="bulb"></ion-icon>
       योजना (Plan)</button>
@@ -18,6 +21,9 @@
       <button ion-item (click)="GoToUphaar()">
       <ion-icon name="megaphone"></ion-icon>
       उपहार (Gift)</button>
+      <button ion-item (click)="GoTocpass()">
+        <ion-icon name="call"></ion-icon>
+       Change Password</button>
       <button ion-item (click)="GoToRules()">
       <ion-icon name="clipboard"></ion-icon>
       नियम और शर्तें (Rules and Regulations)</button>

@@ -1,3 +1,5 @@
+import { ProfilePage } from './../pages/profile/profile';
+import { DownlinePage } from './../pages/downline/downline';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, NavController, NavParams, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -23,6 +25,7 @@ import { ContactusPage } from '../pages/contactus/contactus';
 export class MyApp {
   rootPage:any = LoginPage; 
   username:any='';
+  info:any=[];
   @ViewChild('content') navCtrl: NavController
   constructor(public events: Events,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
@@ -33,6 +36,7 @@ export class MyApp {
 
       this.events.subscribe('userinfo', (user) => {
         console.table(user);
+        this.info=user;
         this.username=user[0].Title+' ' +user[0].DisplayName;
       });
     });
@@ -40,6 +44,17 @@ export class MyApp {
   
   GoToPlan=()=>{
     this.navCtrl.push(PlanPage);
+  }
+  GotoViewProfile=()=>{
+    this.navCtrl.push(ProfilePage,{
+      'info':this.info
+    });
+  }
+  GoToDownline=()=>{
+    this.navCtrl.push(DownlinePage);
+  }
+  GoTocpass=()=>{
+    this.navCtrl.push(ChangepasswordPage);
   }
   GoToDashboard=()=>{
     this.navCtrl.setRoot(DashboardPage);
