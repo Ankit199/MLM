@@ -8,8 +8,55 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <h2>बोनस अंकों पर आधारित उपहार योजना <br>(नगद या गिफ्ट - कोई एक)
-</h2>
+  <ion-card>
+
+    <ion-row>
+      <div class="float_wrapper" col-6>
+        <ion-item>
+          <ion-datetime [(ngModel)]="objmodel.fdate" placeholder="Activation From" displayFormat="DD/MM/YYYY">
+          </ion-datetime>
+        </ion-item>
+        <ion-icon name="calendar" class="money date"></ion-icon>
+      </div>
+      <div class="float_wrapper" col-6>
+        <ion-item>
+          <ion-datetime [(ngModel)]="objmodel.tdate" placeholder="To" displayFormat="DD/MM/YYYY"> </ion-datetime>
+        </ion-item>
+        <ion-icon name="calendar" class="money date"></ion-icon>
+      </div>
+    </ion-row>
+    <ion-row>
+      <div class="float_wrapper" col-6>
+        <ion-item>
+          <ion-select [(ngModel)]="objmodel.status" placeholder="Select Status">
+            <ion-option value="All">All</ion-option>
+            <ion-option value="Active">Active</ion-option>
+            <ion-option value="InActive">InActive</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <div class="float_wrapper" col-6>
+        <ion-item>
+          <ion-select [(ngModel)]="objmodel.Fkpid" placeholder="Select Plan">
+            <ion-option value="0">All</ion-option>
+            <ion-option value="1">Plan A 8500</ion-option>
+            <ion-option value="2">Plan B 4500</ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>
+        <button ion-button (click)="GetReport()">Get Report</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button (click)="Reset()">Reset</button>
+      </ion-col>
+      <ion-col col-4>
+        <button ion-button [disabled]="data.length==0" (click)="OnExport()">Exel</button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
   <ion-card>
     <table>
       <thead>
@@ -22,38 +69,23 @@
           <th>Plan</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>603241</td>
-          <td>Ramu Verma</td>
-          <td>contoso</td>
-          <td>27/01/2019 11:12AM</td>
-          <td>Plan A 8500</td>
+      <tbody *ngIf="data.length>0">
+        <tr *ngFor="let item of data">
+          <td>{{item.RowId}}</td>
+          <td>{{item.LoginId}}</td>
+          <td>{{item.DisplayName}}</td>
+          <td>{{item.SponsorId}}</td>
+          <td>{{item.JoiningDate}}</td>
+          <td>{{item.BookingAmt}}</td>
         </tr>
+
+      </tbody>
+      <tbody *ngIf="data.length==0">
         <tr>
-          <td>2</td>
-          <td>603241</td>
-          <td>Ramu Verma</td>
-          <td>contoso</td>
-          <td>27/01/2019 11:12AM</td>
-          <td>Plan A 8500</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>603241</td>
-          <td>Ramu Verma</td>
-          <td>contoso</td>
-          <td>27/01/2019 11:12AM</td>
-          <td>Plan A 8500</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>603241</td>
-          <td>Ramu Verma</td>
-          <td>contoso</td>
-          <td>27/01/2019 11:12AM</td>
-          <td>Plan B 4500</td>
+          <td colspan="6">
+            No Record Found
+          </td>
+
         </tr>
       </tbody>
     </table>

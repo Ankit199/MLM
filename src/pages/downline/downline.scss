@@ -4,6 +4,31 @@ page-downline {
 ion-card{padding:5px !important; margin:0px !important;width: calc(100% - 0px) !important;}
 h2{color: #00872a;font-size: 16px;font-weight: 700; margin:0px; padding:0px;width: 100%;padding: 10px;text-align: center}
 ion-col{font-size:12px;}
+
+ion-label{color: #000 !important;font-size: 12px;min-width: 80px; margin:5px 5px 5px 0px !important;}
+.item-input{color: #333 !important;font-size: 12px;margin: 5px 5px !important;}
+
+.item-input ion-input:focus, .item-input ion-textarea:focus {border-bottom: solid 1px #dedede;}
+.item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner {border-bottom-color: #dedede; -webkit-box-shadow: inset 0 -1px 0 0 transparent; box-shadow: inset 0 -1px 0 0 transparent;}
+
+.select-placeholder{color: #acaaab !important;font-size: 13px;text-align: left;}
+ion-select{color: #acaaab !important;font-size: 12px;text-align: left; width: 100%; padding-left: 0px;max-width: 100%;}
+ion-select.select{padding:0px 8px 8px 0px !important;}
+.excalate-tab .select .select-icon-inner{margin-top: -5px;right: 0px;border: solid #999;border-width: 0 2px 2px 0;display: inline-block;padding: 2.5px;transform: rotate(45deg);-webkit-transform: rotate(45deg);}
+
+.float_wrapper{float: left;margin-top: 5px; position: relative;margin-bottom: 10px;}
+.pad-r10{padding-right: 10px !important;padding-left:0px;}
+.pad-l10{padding-left: 10px !important;padding-right:0px;}
+.float_wrapper ion-item.item{padding-left: 0px; min-height: 10px;}
+.float_wrapper input.text-input{margin:0px;margin-bottom: 5px;}
+.float_wrapper ion-item.item .item-inner{border-bottom:1px solid #dedede !important;}
+.float_wrapper .money{position: absolute;top: 4px; right: 5px;color: #929292;}
+.float_wrapper ion-item.item.item-input-has-focus .item-inner, .float_wrapper ion-item.item.item-input.input-has-focus .item-inner {border-bottom-color: #dedede; -webkit-box-shadow: inset 0 -1px 0 0 transparent; box-shadow: inset 0 -1px 0 0 transparent;}
+.min-h100{min-height: -webkit-calc(100vh - 198px);	min-height: -moz-calc(100vh - 198px);	min-height: calc(100vh - 198px);}
+.float_wrapper .money.date{top:10px; right: 0px;}
+.float_wrapper.pad-r10 .money.date{top:13px; right: 10px;}
+ion-datetime.datetime{padding: 6px 2px !important;font-size: 14px;}
+
 table{width:100%;}
 table thead{background:#ed0101; color:#fff;}
 table th, table td{font-size:11px; text-align:left; padding: 5px 2px;border-bottom: solid 1px #e2e2e2;border-right: solid 1px #e2e2e2;}
