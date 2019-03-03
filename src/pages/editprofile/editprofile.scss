@@ -10,12 +10,14 @@ ion-label{color: #000 !important;font-size: 12px;min-width: 80px;max-width: 80px
 .item-input{color: #333 !important;font-size: 12px;}
 .text-input {margin: 5px 5px !important;}
 
+.item-input ion-input, .item-input ion-textarea, ion-select{border-bottom: solid 1px #dcdcdc;}
+
 .item-input ion-input:focus, .item-input ion-textarea:focus {border-bottom: solid 1px #dedede;}
 .item-md.item-input.item-input-has-focus .item-inner, .item-md.item-input.input-has-focus .item-inner {border-bottom-color: #dedede; -webkit-box-shadow: inset 0 -1px 0 0 transparent; box-shadow: inset 0 -1px 0 0 transparent;}
 
 .select-placeholder{color: #acaaab !important;font-size: 13px;text-align: left;}
 ion-select{color: #acaaab !important;font-size: 12px;text-align: left; width: 100%; padding-left: 0px;}
-ion-select.select{padding:12px 8px 12px 0px !important;}
+ion-select.select{padding:12px 8px 12px 0px !important;max-width: 100%;}
 .excalate-tab .select .select-icon-inner{margin-top: -5px;right: 0px;border: solid #999;border-width: 0 2px 2px 0;display: inline-block;padding: 2.5px;transform: rotate(45deg);-webkit-transform: rotate(45deg);}
 
 .button {border-radius: 0;overflow: hidden;height: 44px !important;font-size: 16px !important;font-weight: 600;text-transform: capitalize;color: #fff;background-color:#ed0101;-webkit-box-shadow: none;box-shadow: none;-webkit-transition: none;transition: none;transition: none;transition: none;margin: 10px auto;padding: 0 15px;width: 94%;margin: 10px 3% 20px;}

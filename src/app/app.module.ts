@@ -1,9 +1,13 @@
+import { PinrequestPageModule } from "./../pages/pinrequest/pinrequest.module";
+import { PintransferreportPageModule } from "./../pages/pintransferreport/pintransferreport.module";
+import { PintransferPageModule } from "./../pages/pintransfer/pintransfer.module";
+import { PindetailsPageModule } from "./../pages/pindetails/pindetails.module";
 import { ProfilePageModule } from "./../pages/profile/profile.module";
 import { DownlinePageModule } from "./../pages/downline/downline.module";
 import { SettingsProvider } from "./../providers/settings/settings";
 import { CommonfunctionProvider } from "./../providers/commonfunction/commonfunction";
 import { BrowserModule } from "@angular/platform-browser";
-import { ErrorHandler, NgModule } from "@angular/core";
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
@@ -58,7 +62,12 @@ export function provideSettings(storage: Storage) {
     ForgotpasswordPageModule,
     BrowserModule,
     BonuspointPageModule,
+    PindetailsPageModule,
     DownlinePageModule,
+    PintransferPageModule,
+    PintransferreportPageModule,
+    PinrequestPageModule,
+
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -72,6 +81,7 @@ export function provideSettings(storage: Storage) {
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ApiserviceProvider
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

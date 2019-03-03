@@ -172,7 +172,7 @@ $colors: (
 	font-style: normal;
 }
 /* Common CSS */
-ion-header ion-title{padding:0 10px !important;}
+//ion-header ion-title{padding:0 10px !important;}
 ion-navbar .toolbar-background-md, ion-navbar .toolbar-background{border-color: #ed0101;background: #ed0101;}
 ion-navbar .toolbar-title-md, ion-navbar .toolbar-title{font-family: "DINOT-Regular", "Roboto", "Helvetica Neue", sans-serif; color: #fff; font-size: 16px; text-align: left;padding: 0;}
 h1{font-family: 'DINOT-Regular';font-size: 18px;}
@@ -198,6 +198,7 @@ p{font-family: 'DINOT-Regular';font-size: 12px;}
 .relative{position:relative;}
 .clear{clear:both;}
 .mt0{margin-top:0px;}
+.pl10{padding-left:10px !important; margin-top:0px !important;}
 .font16{font-size:16px;}
 .font14 {font-size: 14px;}
 .wd100{width:100% !important;}
@@ -250,7 +251,10 @@ ion-header .bar-button-default-md, ion-header .bar-button-clear-md-default, ion-
 .profile-edit .ion-md-create:before {content: "\f164"; font-size: 20px;}
 
 .menu-listing .item-block .item-inner span {background: #fff;font-size: 1.2rem;color: #dc5352;text-align: center;width: auto;padding: 3px 10px;border-radius: 20px;float: right;margin: 5px 3px 0 0;border: 1px solid  #ebebeb}
-.menu-icon:before{cursor: pointer;font-size: 1.1em;margin-right: 5px;vertical-align: middle;}
+.menu-icon:before{cursor: pointer;font-size: 1.1em;margin-top: 0px;margin-right: 5px;vertical-align: middle;margin-top: 4px;}
+
+ion-header .back-button.show-back-button{min-width: 24px !important;height: 24px !important;max-width: 24px !important;}
+ion-header .hide, ion-header [hidden], ion-header template{display: inline-block !important;}
 
 /*New App*/
 a{color: #ed0101;}
@@ -259,9 +263,10 @@ a:hover{color: #db0404;}
 .button:hover:not(.disable-hover) {background-color: #db0404;}
 .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default{color:#fff !important;text-transform: uppercase !important;font-size: 14px !important;}
 .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default{color:#fff !important;text-transform: uppercase !important;font-size: 14px !important;}
+button.activated{background-color: #00872a !important;}
 
 /*Footer*/
-ion-footer .toolbar-background {border-color: transparent;background-color:#ed0101 !important;}
+ion-footer .toolbar-background {border-color: transparent;background-color:#00872a !important;}
 ion-footer ion-title {padding: 0!important;}
 ion-footer.login-footer .toolbar-title {font-size: 16px; line-height: 26px; font-weight: 700; color: #fff;text-align: center;}
 ion-footer.login-footer .toolbar-title span{padding: 0 2px;font-size: 12px;font-weight: 400;color: #b6b6b6; vertical-align: middle;}
@@ -285,6 +290,9 @@ ion-footer .toolbar-title .material-icons {background: #fff; width: 24px; height
 .onoffswitch-switch {display: block; width: 12px; height:12px; margin: 3px;background: #FFFFFF;position: absolute; top: -1px; bottom:0;right: 26px;border: 1px solid #fff; border-radius: 20px;transition: all 0.3s ease-in 0s;}
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {margin-left: 0;}
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {right: 0px;}
+
+.button{border-radius: 0;overflow: hidden;height: 38px !important;font-size: 14px !important;font-weight: 600;text-transform: capitalize;color: #fff;background-color:#ed0101 !important;-webkit-box-shadow: none;box-shadow: none;-webkit-transition: none;transition: none;transition: none;transition: none;margin: 10px auto;padding: 0 15px;width: 94%;margin: 10px 3% 20px;}
+.button:hover:not(.disable-hover) {background-color: #ed0101 !important;}
 
 @media screen and (max-width: 320px){
   .menu-listing .profile-item{ padding: 0; }

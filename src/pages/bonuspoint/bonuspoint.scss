@@ -9,5 +9,7 @@ table thead{background:#ed0101; color:#fff;}
 table th, table td{font-size:12px; text-align:left; padding: 5px 2px;border-bottom: solid 1px #e2e2e2;border-right: solid 1px #e2e2e2;}
 table th:first-child, table td:first-child{border-left: solid 1px #e2e2e2;}
 table th{font-weight:700;}
+table tr.green_row{background: #00872a;color: #fff;}
+table tr.green_row a{color: #fff;}
 }
 

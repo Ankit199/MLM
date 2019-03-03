@@ -1,3 +1,4 @@
+import { PindetailsPage } from './../pages/pindetails/pindetails';
 import { ProfilePage } from './../pages/profile/profile';
 import { DownlinePage } from './../pages/downline/downline';
 import { Component, ViewChild } from '@angular/core';
@@ -49,6 +50,9 @@ export class MyApp {
     this.navCtrl.push(ProfilePage,{
       'info':this.info
     });
+  }
+  GoTopin=()=>{
+    this.navCtrl.push(PindetailsPage);
   }
   GoToDownline=()=>{
     this.navCtrl.push(DownlinePage);

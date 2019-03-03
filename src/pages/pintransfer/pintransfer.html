@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <ion-icon name="menu" menuToggle class='menu-icon'></ion-icon>
+      PIN Transfer</ion-title>
+  </ion-navbar>
+  <!-- Filter-->
+  <ion-fab top right edge class="pin_menu">
+    <button ion-fab mini>
+    <ion-icon name="pricetag"></ion-icon>
+    </button>
+    <ion-fab-list>
+      <ul class="fab_list">
+        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Details</a></li>
+        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> e-PIN Request</a></li>
+        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer</a></li>
+        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer Report</a></li>
+      </ul>
+    </ion-fab-list>
+  </ion-fab>
+  <!-- /Filter--> 
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label>*Activation Code Type:</ion-label>
+      <ion-select placeholder="Select Plan">
+        <ion-option value="all">All</ion-option>
+        <ion-option value="Plan A 8500">Plan A 8500</ion-option>
+        <ion-option value="Plan B 4500">Plan B 4500</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>*Transfer to ID:</ion-label>
+      <ion-input placeholder="2"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Available ePins: <strong>2</strong></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Transfer to Franchise Name: <strong>Mr.Contoso Ujala</strong></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>No. of ePins:</ion-label>
+      <ion-input placeholder="2"></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button>Transfer</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button>Reset</button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons>
+      <button ion-button>View Join Package</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

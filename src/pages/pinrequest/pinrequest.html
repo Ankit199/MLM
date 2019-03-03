@@ -2,10 +2,24 @@
   <ion-navbar>
     <ion-title>
       <ion-icon name="menu" menuToggle class='menu-icon'></ion-icon>
-      ePIN Request
-      <div class="logo"><img src="../../assets/images/contoso_natura_logo.png"></div>
+      ePIN Request      
     </ion-title>
   </ion-navbar>
+  <!-- Filter-->
+  <ion-fab top right edge class="pin_menu">
+    <button ion-fab mini>
+    <ion-icon name="pricetag"></ion-icon>
+    </button>
+    <ion-fab-list>
+      <ul class="fab_list">
+        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Details</a></li>
+        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> e-PIN Request</a></li>
+        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer</a></li>
+        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer Report</a></li>
+      </ul>
+    </ion-fab-list>
+  </ion-fab>
+  <!-- /Filter--> 
 </ion-header>
 <ion-content>
   <ion-card>
