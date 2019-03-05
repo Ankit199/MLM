@@ -89,4 +89,13 @@ export class ApiserviceProvider {
       {}
     );
   };
+  GuestRegistration = objguest => {
+    return this._http.post(
+      this.url +
+        `GuestRegistration/TempRegistration/?Name=${objguest.name}&mobile=${
+          objguest.password
+        }`,
+      {}
+    );
+  };
 }

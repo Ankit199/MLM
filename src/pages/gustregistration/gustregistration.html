@@ -9,17 +9,17 @@
         <ion-icon name="business"></ion-icon>
         <ion-item>
           <ion-label color="" floating> User Name</ion-label>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="objguest.name"></ion-input>
         </ion-item>
       </div>
       <div class="input-wrap"> <i class="material-icons">phone</i>
         <ion-item>
           <ion-label color="" floating>Mobile</ion-label>
-          <ion-input></ion-input>
+          <ion-input [(ngModel)]="objguest.password"></ion-input>
         </ion-item>
       </div>
       <ion-row>
-        <button ion-button>Submit</button>
+        <button ion-button (click)="register()">Submit</button>
       </ion-row>
     </div>
   </div>
@@ -27,7 +27,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons>
-      <button ion-button>Contoso उजाला</button>
+      <button ion-button (click)="gotologin()">Contoso उजाला</button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
