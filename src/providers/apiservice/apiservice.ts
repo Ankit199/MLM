@@ -98,4 +98,29 @@ export class ApiserviceProvider {
       {}
     );
   };
+
+  countPins = objpincount => {
+    return this._http.post(
+      this.url +
+        `ProductDetails/GetTotalEpin/?MemId=${objpincount.fkid}&ProductId=${
+          objpincount.pid
+        }`,
+      {}
+    );
+  };
+  validatepinid = loginid => {
+    return this._http.post(
+      this.url + `Registration/ValidateUser/?loginID=${loginid}`,
+      {}
+    );
+  };
+  transferpin = objmodelpin => {
+    return this._http.post(
+      this.url +
+        `ProductDetails/TransferEpin/?MemId=${objmodelpin.fkid}&ToMemId=${
+          objmodelpin.tmid
+        }&ProductId=${objmodelpin.pid}&noOfePin=${objmodelpin.pin}`,
+      {}
+    );
+  };
 }

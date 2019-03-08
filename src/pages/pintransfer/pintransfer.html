@@ -2,47 +2,60 @@
   <ion-navbar>
     <ion-title>
       <ion-icon name="menu" menuToggle class='menu-icon'></ion-icon>
-      PIN Transfer</ion-title>
+      PIN Transfer
+    </ion-title>
   </ion-navbar>
   <!-- Filter-->
   <ion-fab top right edge class="pin_menu">
     <button ion-fab mini>
-    <ion-icon name="pricetag"></ion-icon>
+      <ion-icon name="pricetag"></ion-icon>
     </button>
     <ion-fab-list>
       <ul class="fab_list">
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Details</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> e-PIN Request</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer Report</a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Details
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> e-PIN Request
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Transfer
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Transfer Report
+          </a></li>
       </ul>
     </ion-fab-list>
   </ion-fab>
-  <!-- /Filter--> 
+  <!-- /Filter-->
 </ion-header>
 <ion-content>
   <ion-card>
     <ion-item>
       <ion-label>*Activation Code Type:</ion-label>
       <ion-select placeholder="Select Plan">
-        <ion-option value="all">All</ion-option>
-        <ion-option value="Plan A 8500">Plan A 8500</ion-option>
-        <ion-option value="Plan B 4500">Plan B 4500</ion-option>
+        <ion-option (ionSelect)="countpin(0)" value="0">All</ion-option>
+        <ion-option (ionSelect)="countpin(1)" value="1">Plan A 8500</ion-option>
+        <ion-option (ionSelect)="countpin(2)" value="2">Plan B 4500</ion-option>
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>*Transfer to ID:</ion-label>
-      <ion-input placeholder="2"></ion-input>
+      <ion-input (change)='validatepinid()' [(ngModel)]="objpinmodel.loginid" loginid placeholder="Enter Login ID"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Available ePins: <strong>2</strong></ion-label>
+      <ion-label>Available ePins: <strong>{{objpinmodel.totalpins}}</strong></ion-label>
     </ion-item>
     <ion-item>
-      <ion-label>Transfer to Franchise Name: <strong>Mr.Contoso Ujala</strong></ion-label>
+      <ion-label>Transfer to Franchise Name: <strong>{{ objpinmodel.trnsfrdetail.DisplayName}}</strong></ion-label>
     </ion-item>
     <ion-item>
       <ion-label>No. of ePins:</ion-label>
-      <ion-input placeholder="2"></ion-input>
+      <ion-input [(ngModel)]="objpinmodel.pt" placeholder="0"></ion-input>
     </ion-item>
     <ion-row>
       <ion-col col-6>
