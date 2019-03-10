@@ -94,4 +94,8 @@ export class ChangepasswordPage {
       );
     }
   };
+
+  cancle = () => {
+    this.navCtrl.pop();
+  };
 }

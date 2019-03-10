@@ -40,7 +40,7 @@ export class PintransferPage {
     public comn: CommonfunctionProvider
   ) {
     //   this.countpin();
-    this.sett = this.setting.getallSettings();
+    //this.sett = this.setting.getallSettings();
   }
 
   ionViewDidLoad() {
@@ -95,26 +95,65 @@ export class PintransferPage {
     );
   };
   transferpin = () => {
-    let obj = {
-      fkid: this.objpinmodel.fkid,
-      tmid: this.objpinmodel.trnsfrdetail.FK_MemId,
-      pid: this.objpinmodel.act,
-      pin: this.objpinmodel.pt
-    };
-    this.api.transferpin(obj).subscribe(
-      (res: any) => {
-        if (res == 1) {
+    if (this.objpinmodel.act !== "") {
+      if (this.objpinmodel.fkid !== "") {
+        if (this.objpinmodel.pt !== "") {
+          if (
+            Number(this.objpinmodel.pt) <= Number(this.objpinmodel.totalpins)
+          ) {
+            let obj = {
+              fkid: this.objpinmodel.fkid,
+              tmid: this.objpinmodel.trnsfrdetail.FK_MemId,
+              pid: this.objpinmodel.act,
+              pin: this.objpinmodel.pt
+            };
+            this.api.transferpin(obj).subscribe(
+              (res: any) => {
+                if (res == 1) {
+                  let alert = this.comn.createAlert(
+                    "Success !",
+                    "Pin Transfer Successfully."
+                  );
+                  alert.present();
+                } else {
+                  let alert = this.comn.createAlert(
+                    "Error!",
+                    "Error Occured. Contact to admin"
+                  );
+                  alert.present();
+                }
+              },
+              error => {
+                console.log(error);
+              }
+            );
+          } else {
+            let alert = this.comn.createAlert(
+              "Alert !",
+              "Please Enter Valid  Number of Pin's. "
+            );
+            alert.present();
+          }
         } else {
           let alert = this.comn.createAlert(
-            "Error!",
-            "Error Occured. Contact to admin"
+            "Alert !",
+            "Please Enter Number of Pin's. "
           );
           alert.present();
         }
-      },
-      error => {
-        console.log(error);
+      } else {
+        let alert = this.comn.createAlert(
+          "Alert !",
+          "Please Enter Transfer LoginID. "
+        );
+        alert.present();
       }
-    );
+    } else {
+      let alert = this.comn.createAlert("Alert !", "Please Select a Product. ");
+      alert.present();
+    }
+  };
+  reset = () => {
+    this.navCtrl.pop();
   };
 }

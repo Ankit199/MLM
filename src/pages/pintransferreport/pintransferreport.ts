@@ -1,25 +1,72 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the PintransferreportPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CommonfunctionProvider } from "./../../providers/commonfunction/commonfunction";
+import { SettingsProvider } from "./../../providers/settings/settings";
+import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
 @IonicPage()
 @Component({
-  selector: 'page-pintransferreport',
-  templateUrl: 'pintransferreport.html',
+  selector: "page-pintransferreport",
+  templateUrl: "pintransferreport.html"
 })
 export class PintransferreportPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  objpintransfer = {
+    status: "Transfer",
+    product: "",
+    fdate: "",
+    tdate: "",
+    loginID: "",
+    TOloginID: ""
+  };
+  result: any = [];
+  sett: any = [];
+  constructor(
+    public api: ApiserviceProvider,
+    public setting: SettingsProvider,
+    public comn: CommonfunctionProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {
+    // this.sett = this.setting.getallSettings();
+    // this.objpintransfer.loginID = this.sett.dashboard[0].LoginId;
+    // console.log("ionViewDidLoad PintransferreportPage");
+    // this.pinTransferReport();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PintransferreportPage');
+    this.sett = this.setting.getallSettings();
+    this.objpintransfer.loginID = this.sett.dashboard[0].LoginId;
+    console.log("ionViewDidLoad PintransferreportPage");
+    this.pinTransferReport();
   }
+  reset = () => {
+    this.objpintransfer.status = "Transfer";
+    this.objpintransfer.product = "";
+    this.objpintransfer.fdate = "";
+    this.objpintransfer.tdate = "";
+    this.objpintransfer.loginID = "";
+    this.objpintransfer.TOloginID = "";
+  };
 
+  pinTransferReport = () => {
+    this.result.length = 0;
+    let loading = this.comn.presentLoadingDefault();
+    loading.present();
+    this.api.pintransferreport(this.objpintransfer).subscribe(
+      (res: any) => {
+        loading.dismiss();
+        if (res.length > 0) {
+          this.result = res;
+        } else {
+          let alert = this.comn.createAlert("Alert !", "No Record Found.");
+          alert.present();
+          this.result = [];
+        }
+      },
+      err => {
+        loading.dismiss();
+        console.log(err);
+      }
+    );
+  };
 }

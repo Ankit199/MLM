@@ -123,4 +123,13 @@ export class ApiserviceProvider {
       {}
     );
   };
+  pintransferreport = (obj: any) => {
+    let furl = `ProductDetails/TransferEpinDetails/?LoginId=${
+      obj.loginID
+    }&toLoginId=${obj.TOloginID}&status=${obj.status}&fromDate=${
+      obj.fdate
+    }&toDate=${obj.tdate}&ProductId=${obj.product}`;
+    console.log("report" + furl);
+    return this._http.post(this.url + furl, {});
+  };
 }

@@ -8,31 +8,45 @@
   <!-- Filter-->
   <ion-fab top right edge class="pin_menu">
     <button ion-fab mini>
-    <ion-icon name="pricetag"></ion-icon>
+      <ion-icon name="pricetag"></ion-icon>
     </button>
-    <ion-fab-list>
+    <li>
       <ul class="fab_list">
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Details</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> e-PIN Request</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer Report</a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Details
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> e-PIN Request
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Transfer
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Transfer Report
+          </a></li>
       </ul>
-    </ion-fab-list>
+    </li>
   </ion-fab>
-  <!-- /Filter--> 
+  <!-- /Filter-->
 </ion-header>
 <ion-content>
   <ion-card>
     <ion-row>
       <div class="float_wrapper" col-6>
         <ion-item>
-          <ion-datetime placeholder="From Date" displayFormat="DD/MM/YYYY"> </ion-datetime>
+          <ion-datetime [(ngModel)]="objpintransfer.fdate" placeholder="From Date" displayFormat="DD/MM/YYYY">
+          </ion-datetime>
         </ion-item>
         <ion-icon name="calendar" class="money date"></ion-icon>
       </div>
       <div class="float_wrapper" col-6>
         <ion-item>
-          <ion-datetime placeholder="To Date" displayFormat="DD/MM/YYYY"> </ion-datetime>
+          <ion-datetime [(ngModel)]="objpintransfer.tdate" placeholder="To Date" displayFormat="DD/MM/YYYY">
+          </ion-datetime>
         </ion-item>
         <ion-icon name="calendar" class="money date"></ion-icon>
       </div>
@@ -40,19 +54,19 @@
     <ion-row>
       <div class="float_wrapper" col-6>
         <ion-item>
-          <ion-input placeholder="User ID"></ion-input>
+          <ion-input [(ngModel)]="objpintransfer.loginID" readonly placeholder="User ID"></ion-input>
         </ion-item>
       </div>
       <div class="float_wrapper" col-6>
         <ion-item>
-          <ion-input placeholder="Transfer/Receive User Id"></ion-input>
+          <ion-input [(ngModel)]="objpintransfer.TOloginID" placeholder="Transfer/Receive User Id"></ion-input>
         </ion-item>
       </div>
     </ion-row>
     <ion-row>
       <div class="float_wrapper" col-6>
         <ion-item>
-          <ion-select placeholder="Status">
+          <ion-select [(ngModel)]="objpintransfer.status" placeholder="Status">
             <ion-option value="Tranfer">Tranfer</ion-option>
             <ion-option value="Receive">Receive</ion-option>
           </ion-select>
@@ -60,22 +74,46 @@
       </div>
       <div class="float_wrapper" col-6>
         <ion-item>
-          <ion-select placeholder="Select Plan">
-            <ion-option value="all">All</ion-option>
-            <ion-option value="Plan A 8500">Plan A 8500</ion-option>
-            <ion-option value="Plan B 4500">Plan B 4500</ion-option>
+          <ion-select [(ngModel)]="objpintransfer.product" placeholder="Select Plan">
+            <ion-option value="0">All</ion-option>
+            <ion-option value="1">Plan A 8500</ion-option>
+            <ion-option value="2">Plan B 4500</ion-option>
           </ion-select>
         </ion-item>
       </div>
     </ion-row>
     <ion-row>
       <ion-col col-6>
-        <button ion-button>Get Details</button>
+        <button ion-button (click)="pinTransferReport()">Get Details</button>
       </ion-col>
       <ion-col col-6>
-        <button ion-button>Reset</button>
+        <button ion-button (click)="reset()">Reset</button>
       </ion-col>
     </ion-row>
+  </ion-card>
+  <ion-card>
+    <table *ngIf="result.length>0">
+      <thead>
+        <tr>
+          <th>Sr. No.</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Product</th>
+          <th>Total Pin</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of result; let i=index">
+          <td>{{i+1}}</td>
+          <td>{{item.FromMember}}</td>
+          <td>{{item.ToMember}}</td>
+          <td>{{item.ProductName}}</td>
+          <td>{{item.NoOfPins}}</td>
+          <td>{{item.TransferDate}}</td>
+        </tr>
+      </tbody>
+    </table>
   </ion-card>
 </ion-content>
 <ion-footer>
