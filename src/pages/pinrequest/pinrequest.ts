@@ -1,25 +1,30 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the PinrequestPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
 
 @IonicPage()
 @Component({
-  selector: 'page-pinrequest',
-  templateUrl: 'pinrequest.html',
+  selector: "page-pinrequest",
+  templateUrl: "pinrequest.html"
 })
 export class PinrequestPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  objepin = {
+    productA: {
+      product: "A",
+      pin: 0,
+      price: 8500,
+      total: 8500
+    },
+    productB: {
+      product: "B",
+      pin: 0,
+      price: 9000,
+      total: 9000
+    },
+    total: 17500
+  };
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PinrequestPage');
+    console.log("ionViewDidLoad PinrequestPage");
   }
-
 }

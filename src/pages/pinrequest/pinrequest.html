@@ -2,24 +2,36 @@
   <ion-navbar>
     <ion-title>
       <ion-icon name="menu" menuToggle class='menu-icon'></ion-icon>
-      ePIN Request      
+      ePIN Request
     </ion-title>
   </ion-navbar>
   <!-- Filter-->
   <ion-fab top right edge class="pin_menu">
     <button ion-fab mini>
-    <ion-icon name="pricetag"></ion-icon>
+      <ion-icon name="pricetag"></ion-icon>
     </button>
     <ion-fab-list>
       <ul class="fab_list">
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Details</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> e-PIN Request</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer</a></li>
-        <li><a href="#!"><ion-icon name="pricetag"></ion-icon><div class="clearfix"></div> PIN Transfer Report</a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Details
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> e-PIN Request
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Transfer
+          </a></li>
+        <li><a href="#!">
+            <ion-icon name="pricetag"></ion-icon>
+            <div class="clearfix"></div> PIN Transfer Report
+          </a></li>
       </ul>
     </ion-fab-list>
   </ion-fab>
-  <!-- /Filter--> 
+  <!-- /Filter-->
 </ion-header>
 <ion-content>
   <ion-card>
@@ -35,19 +47,19 @@
       <tbody>
         <tr>
           <td>Plan A 8500</td>
-          <td>8500</td>
-          <td>1</td>
-          <td>8500</td>
+          <td>{{objepin.productA.price}}</td>
+          <td><input ion-input [(ngModel)]="objepin.productA.pin" /></td>
+          <td>{{objepin.productA.total}}</td>
         </tr>
         <tr>
           <td>Plan B 4500</td>
-          <td>4500</td>
-          <td>2</td>
-          <td>9000</td>
+          <td>{{objepin.productB.price}}</td>
+          <td><input ion-input [(ngModel)]="objepin.productB.pin" /></td>
+          <td>{{objepin.productB.total}}</td>
         </tr>
         <tr>
           <td class="text-right" colspan="3"><strong>TOTAL &nbsp;</strong></td>
-          <td>17,500</td>
+          <td>{{objepin.total}}</td>
         </tr>
       </tbody>
     </table>
