@@ -132,4 +132,12 @@ export class ApiserviceProvider {
     console.log("report" + furl);
     return this._http.post(this.url + furl, {});
   };
+
+  epindetail = (objdetail: any) => {
+    let furl = `ProductDetails/ProductDetails/?MemId=${
+      objdetail.fkid
+    }&ProductId=${objdetail.pid}&isRegistered=${objdetail.pin}`;
+    console.log("epindetail" + furl);
+    return this._http.post(this.url + furl, {});
+  };
 }

@@ -12,7 +12,7 @@
     <h2>Sponsor</h2>
     <ion-item>
       <ion-label>Activation Code:</ion-label>
-      <ion-input  [(ngModel)]="MemberInfo.epin" (change)='validateepin()' placeholder="Activation Code"></ion-input>
+      <ion-input [(ngModel)]="MemberInfo.epin" readonly (change)='validateepin()' placeholder="Activation Code"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Sponsor Code:</ion-label>
@@ -36,14 +36,14 @@
     <ion-item>
       <ion-label>State:</ion-label>
       <ion-select [(ngModel)]="MemberInfo.stid" placeholder="Select State">
-        <ion-option   *ngFor="let st of states" (ionSelect)="getcity(st)" [value]="st.PK_StateId">{{st.StateName}}</ion-option>
+        <ion-option *ngFor="let st of states" (ionSelect)="getcity(st)" [value]="st.PK_StateId">{{st.StateName}}</ion-option>
         <!-- <ion-option value="MP">MP</ion-option> -->
       </ion-select>
     </ion-item>
     <ion-item>
       <ion-label>District:</ion-label>
       <ion-select [(ngModel)]="MemberInfo.ctid" placeholder="Select Distract">
-        <ion-option  *ngFor="let ct of city" [value]="ct.PK_CityId">{{ct.CityName}}</ion-option>
+        <ion-option *ngFor="let ct of city" [value]="ct.PK_CityId">{{ct.CityName}}</ion-option>
         <!-- <ion-option value="Kanpur">Kanpur</ion-option> -->
       </ion-select>
     </ion-item>
@@ -61,7 +61,7 @@
     </ion-item>
     <ion-item>
       <ion-label>Aadhar No.:</ion-label>
-      <ion-input  [(ngModel)]="MemberInfo.adhar" placeholder="Enter your Aadhar No."></ion-input>
+      <ion-input [(ngModel)]="MemberInfo.adhar" placeholder="Enter your Aadhar No."></ion-input>
     </ion-item>
   </ion-card>
   <ion-card>

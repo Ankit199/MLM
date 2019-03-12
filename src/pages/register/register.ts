@@ -41,6 +41,15 @@ export class RegisterPage {
     public navCtrl: NavController,
     public navParams: NavParams
   ) {
+    console.log(this.navParams.get("epin"));
+    this.MemberInfo.epin = this.navParams.get("epin");
+    if (this.MemberInfo.epin !== "") {
+      this.validateepin();
+    } else {
+      let alert = this.comn.createAlert("Alert!", "Activation Code not found.");
+      alert.present();
+    }
+
     this.getstaes();
   }
 

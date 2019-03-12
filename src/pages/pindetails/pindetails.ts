@@ -1,3 +1,6 @@
+import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
+import { CommonfunctionProvider } from "./../../providers/commonfunction/commonfunction";
+import { SettingsProvider } from "./../../providers/settings/settings";
 import { PlanPage } from "./../plan/plan";
 import { PintransferreportPage } from "./../pintransferreport/pintransferreport";
 import { PintransferPage } from "./../pintransfer/pintransfer";
@@ -20,15 +23,54 @@ import { RegisterPage } from "../register/register";
   templateUrl: "pindetails.html"
 })
 export class PindetailsPage {
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  sett: any;
+  epin: any = [];
+  objpin = {
+    fkid: "",
+    pid: 0,
+    pin: 2
+  };
+  constructor(
+    public setting: SettingsProvider,
+    public comn: CommonfunctionProvider,
+    public api: ApiserviceProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {}
 
   ionViewDidLoad() {
+    this.sett = this.setting.getallSettings();
+    this.objpin.fkid = this.sett.dashboard[0].FK_MemId;
+    console.log("ionViewDidLoad PintransferreportPage");
     console.log("ionViewDidLoad PindetailsPage");
   }
-  gotoregister = () => {
-    this.navCtrl.push(RegisterPage);
+  gotoregister = (code: any = "") => {
+    console.log("epin code " + code);
+    this.navCtrl.push(RegisterPage, {
+      epin: code
+    });
   };
-
+  epindetail = () => {
+    let loading = this.comn.presentLoadingDefault();
+    loading.present();
+    console.log(this.objpin);
+    this.api.epindetail(this.objpin).subscribe(
+      (res: any) => {
+        loading.dismiss();
+        this.epin = res;
+        console.table(this.epin);
+      },
+      error => {
+        loading.dismiss();
+        console.log(error);
+      }
+    );
+  };
+  reset = () => {
+    this.objpin.pid = 0;
+    this.objpin.pin = 2;
+    this.epindetail();
+  };
   gotopackage = () => {
     this.navCtrl.push(PlanPage);
   };
