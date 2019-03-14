@@ -140,4 +140,10 @@ export class ApiserviceProvider {
     console.log("epindetail" + furl);
     return this._http.post(this.url + furl, {});
   };
+ 
+  redeem /** Redeem skip rewards */= (obj)=>{
+    let furl = `Rewards/UpdateRewardStatus/?MemId=${obj.fkid}&SetRewardId=1&action=${obj.rewardstatus}`;    
+    return this._http.post(this.url + furl, {});
+  }
+
 }
