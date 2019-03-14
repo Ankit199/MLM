@@ -24,7 +24,8 @@ import { GustregistrationPage } from "../gustregistration/gustregistration";
 export class LoginPage {
   loginform = {
     user: "",
-    pass: ""
+    pass: "",
+    isRemember:true
   };
   constructor(
     public events: Events,
@@ -40,13 +41,34 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
+
     console.log("ionViewDidLoad LoginPage");
+  }
+
+  ionViewDidEnter() {
+    this.remembMeLogin();
+  }
+
+  remembMeLogin() {
+    this.setting.load().then(res => {
+      let settings = this.setting.getallSettings();
+      // console.table(settings);
+      if (settings.rememberMe) {
+        this.loginform.user= settings.user;
+        this.loginform.pass= settings.password;
+        this.loginform.isRemember = settings.rememberMe;
+        this.GoToDashboard();
+      }
+    });
   }
 
   GoToPlan = () => {
     this.navCtrl.push(PlanPage);
   };
   GoToDashboard = () => {
+
+    console.log(this.loginform);
+
     let loading = this.comn.presentLoadingDefault();
     loading.present();
 
@@ -56,6 +78,9 @@ export class LoginPage {
           loading.dismiss();
           this.events.publish("userinfo", res);
           this.setting.setValue("fkmemid", res[0].FK_MemId);
+          this.setting.setValue("user", this.loginform.user);
+          this.setting.setValue("password", this.loginform.pass);
+          this.setting.setValue("rememberMe", this.loginform.isRemember);
           this.setting.setValue("dashboard", res);
           this.navCtrl.setRoot(DashboardPage);
         } else {
