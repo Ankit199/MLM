@@ -48,6 +48,7 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [MyApp, HomePage],
   imports: [
+  
     GustregistrationPageModule,
     HttpClientModule,
     ChangepasswordPageModule,

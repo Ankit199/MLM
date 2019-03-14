@@ -2,6 +2,7 @@ import { SettingsProvider } from "./../../providers/settings/settings";
 import { CommonfunctionProvider } from "./../../providers/commonfunction/commonfunction";
 import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
 import { Component } from "@angular/core";
+
 import {
   IonicPage,
   NavController,
@@ -28,6 +29,7 @@ export class LoginPage {
     isRemember:true
   };
   constructor(
+    private toastr: ToastrService,
     public events: Events,
     public setting: SettingsProvider,
     public comn: CommonfunctionProvider,
@@ -92,6 +94,7 @@ export class LoginPage {
         }
       } else {
         loading.dismiss();
+   
         let alert = this.comn.createAlert(
           "Alert!",
           "MemberID and Password not valid. please check and try again."

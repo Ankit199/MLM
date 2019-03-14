@@ -19,6 +19,7 @@ import { BonuspointPage } from '../pages/bonuspoint/bonuspoint';
 import { UphaarPage } from '../pages/uphaar/uphaar';
 import { RulesPage } from '../pages/rules/rules';
 import { ContactusPage } from '../pages/contactus/contactus';
+import { SettingsProvider } from '../providers/settings/settings';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,7 +29,7 @@ export class MyApp {
   username:any='';
   info:any=[];
   @ViewChild('content') navCtrl: NavController
-  constructor(public events: Events,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(public settings:SettingsProvider,public events: Events,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
       statusBar.overlaysWebView(false);
       statusBar.styleDefault();
@@ -70,7 +71,17 @@ export class MyApp {
     this.navCtrl.push(ContactusPage);
   }
   GoTologin=()=>{
-    this.navCtrl.push(LoginPage);
+    var keyArray = [];
+
+    keyArray.push('rememberMe');
+    keyArray.push('user');
+    keyArray.push('password');
+    this.settings.removeKey(keyArray).then(__ => {
+      this.navCtrl.setRoot(LoginPage);
+     // this.settings.setValue('isLogin', false);
+      this.settings.save();
+    });
+   
   }
   GoToRules=()=>{
     this.navCtrl.push(RulesPage);
@@ -78,5 +89,7 @@ export class MyApp {
   GoToBonus=()=>{
     this.navCtrl.push(BonuspointPage);
   }
+
+  
 }
 
