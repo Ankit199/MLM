@@ -32,11 +32,13 @@ ion-select.select{padding:12px 8px 12px 0px !important;max-width: 100%;}
 .float_wrapper .money.date{top:10px; right: 0px;}
 .float_wrapper.pad-r10 .money.date{top:13px; right: 10px;}
 ion-datetime.datetime{padding: 6px 2px !important;font-size: 14px;}
+
 table{width:100%;}
 table thead{background:#ed0101; color:#fff;}
 table th, table td{font-size:11px; text-align:left; padding: 5px 2px;border-bottom: solid 1px #e2e2e2;border-right: solid 1px #e2e2e2;}
 table th:first-child, table td:first-child{border-left: solid 1px #e2e2e2;}
 table th{font-weight:700;}
+
 /*Top Menu*/
 .fab ion-icon{font-size:2rem;}
 ion-fab[top][edge].pin_menu{top:-50px !important;right: 5px; position: relative; float: right;}

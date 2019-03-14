@@ -1,6 +1,7 @@
 import { SettingsProvider } from "./../settings/settings";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { stringify } from "@angular/core/src/render3/util";
 
 @Injectable()
 export class ApiserviceProvider {
@@ -144,6 +145,12 @@ export class ApiserviceProvider {
   redeem /** Redeem skip rewards */= (obj)=>{
     let furl = `Rewards/UpdateRewardStatus/?MemId=${obj.fkid}&SetRewardId=1&action=${obj.rewardstatus}`;    
     return this._http.post(this.url + furl, {});
+  }
+
+  epinrequest /** Epin request for product */=(objpinrequest)=>{
+    //http://api.contosonatura.com/api/ProductDetails/UserEpinRequest/
+    let furl= `/ProductDetails/UserEpinRequest/`;
+    return this._http.post(this.url + furl, JSON.stringify(objpinrequest));
   }
 
 }
