@@ -29,7 +29,7 @@ export class LoginPage {
     isRemember:true
   };
   constructor(
-    private toastr: ToastrService,
+   
     public events: Events,
     public setting: SettingsProvider,
     public comn: CommonfunctionProvider,
