@@ -100,6 +100,7 @@ export class PinrequestPage {
   };
 
   epinrequest = () => {
+    
     if (this.objepin.productA.pin.toString() !== "" || this.objepin.productA.pin.toString() !== "0") {
       this.adet.productId.push('1');
       this.adet.noOfPins.push(this.objepin.productA.pin);
@@ -109,14 +110,24 @@ if(this.objepin.productB.pin.toString() !=="" ||  this.objepin.productB.pin.toSt
   this.adet.noOfPins.push(this.objepin.productB.pin);
 }
 if( this.adet.noOfPins.length>0){
+  let loading = this.comn.presentLoadingDefault();
+    loading.present();
   this.adet.MemId = this.userref;
   this.adet.paymentMode = this.objepin.pmode;
   this.adet.chequeDDNo = this.objepin.cdbtn;
    this.adet.chequeDDDate = (this.objepin.cdtd == "" ? null : this.objepin.cdtd);
   this.adet.bankName = this.objepin.bank;               
   this.adet.createdBy = this.userref;
+  this.api.epinrequest(this.adet).subscribe((res:any)=>{
+    loading.dismiss();
+    if(res)
+  },error=>{
+    loading.dismiss();
+    console.log(error);
+  })
 console.log(this.adet);
 }else{
+ 
   let alert = this.comn.createAlert(
     "Alert!",
     "Please Enter Number Of Pins."
