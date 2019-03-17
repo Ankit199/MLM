@@ -1,3 +1,6 @@
+import { PintransferPage } from "./../pintransfer/pintransfer";
+import { PinrequestPage } from "./../pinrequest/pinrequest";
+import { PindetailsPage } from "./../pindetails/pindetails";
 import { CommonfunctionProvider } from "./../../providers/commonfunction/commonfunction";
 import { SettingsProvider } from "./../../providers/settings/settings";
 import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
@@ -32,7 +35,15 @@ export class PintransferreportPage {
     // console.log("ionViewDidLoad PintransferreportPage");
     // this.pinTransferReport();
   }
-
+  gotopindetail = () => {
+    this.navCtrl.push(PindetailsPage);
+  };
+  gotopinrequest = () => {
+    this.navCtrl.push(PinrequestPage);
+  };
+  gotopintransfer = () => {
+    this.navCtrl.push(PintransferPage);
+  };
   ionViewDidLoad() {
     this.sett = this.setting.getallSettings();
     this.objpintransfer.loginID = this.sett.dashboard[0].LoginId;

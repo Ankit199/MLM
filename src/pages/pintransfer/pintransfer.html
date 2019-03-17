@@ -12,22 +12,26 @@
     </button>
     <ion-fab-list>
       <ul class="fab_list">
-        <li><a href="#!">
+        <li (click)="gotopindetail()"><a href="javascript:void(0)">
             <ion-icon name="pricetag"></ion-icon>
             <div class="clearfix"></div> PIN Details
           </a></li>
-        <li><a href="#!">
+        <li (click)="gotopinrequest()">
+          <a href="javascript:void(0)">
             <ion-icon name="pricetag"></ion-icon>
             <div class="clearfix"></div> e-PIN Request
-          </a></li>
-        <li><a href="#!">
+          </a>
+        </li>
+        <li><a href="javascript:void(0)">
             <ion-icon name="pricetag"></ion-icon>
             <div class="clearfix"></div> PIN Transfer
           </a></li>
-        <li><a href="#!">
+        <li (click)="gotopinreport()">
+          <a href="javascript:void(0)">
             <ion-icon name="pricetag"></ion-icon>
             <div class="clearfix"></div> PIN Transfer Report
-          </a></li>
+          </a>
+        </li>
       </ul>
     </ion-fab-list>
   </ion-fab>

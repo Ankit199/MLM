@@ -16,7 +16,8 @@
       <li>उपहार योजना बोनस अंकों पर आधारित हैं। जितने बोनस अंक होंगे उसी के आधार पर उपहार दिया जायेगा।</li>
     </ol>
   </ion-card>
-  <button ion-button>PLAN A</button>
+  <button *ngIf="isloginType==='main'" ion-button>PLAN A</button>
+  <button *ngIf="isloginType!=='main'" (click)="requestplanA()" ion-button>Click to request PLAN A</button>
   <h2>Solar Magic Home Light System</h2>
   <ion-card>
     <button ion-button>सदस्यता शुल्क- 8500/-</button>
@@ -31,7 +32,8 @@
       <li>Transportation of Product paid by member</li>
     </ol>
   </ion-card>
-  <button ion-button>PLAN B</button>
+  <button *ngIf="isloginType==='main'" ion-button>PLAN B</button>
+  <button *ngIf="isloginType!=='main'" (click)="requestplanB()" ion-button>Click to request PLAN B</button>
   <h2>Solar Mini Home Light System</h2>
   <ion-card>
     <button ion-button>सदस्यता शुल्क- 4500/-</button>

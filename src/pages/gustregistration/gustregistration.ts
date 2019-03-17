@@ -1,7 +1,9 @@
+import { GuestdashboardPage } from "./../guestdashboard/guestdashboard";
 import { CommonfunctionProvider } from "./../../providers/commonfunction/commonfunction";
 import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, Events } from "ionic-angular";
+import { SettingsProvider } from "../../providers/settings/settings";
 
 /**
  * Generated class for the GustregistrationPage page.
@@ -18,13 +20,16 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 export class GustregistrationPage {
   objguest = {
     name: "",
-    password: ""
+    password: "",
+    fkid: ""
   };
   constructor(
     public api: ApiserviceProvider,
     public comn: CommonfunctionProvider,
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public setting: SettingsProvider,
+    public events: Events
   ) {}
 
   ionViewDidLoad() {
@@ -41,13 +46,16 @@ export class GustregistrationPage {
       (res: any) => {
         loading.dismiss();
         if (res) {
+          this.objguest.fkid = res;
+          let result = [];
+          result.push(this.objguest);
+          console.log("***Guest Result ****" + result);
+          this.events.publish("isloginType", "guest");
+          this.events.publish("userinfo", result);
           this.objguest.name = "";
           this.objguest.password = "";
-          let alert = this.comn.createAlert(
-            "Success!",
-            "Registration Successfully."
-          );
-          alert.present();
+
+          this.navCtrl.setRoot(GuestdashboardPage);
         } else {
           let alert = this.comn.createAlert("Error!", res.Message);
           alert.present();
