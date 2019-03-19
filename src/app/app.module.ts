@@ -1,4 +1,6 @@
-import { GustregistrationPageModule } from './../pages/gustregistration/gustregistration.module';
+import { ViewpackagePageModule } from "./../pages/viewpackage/viewpackage.module";
+import { GuestdashboardPageModule } from "./../pages/guestdashboard/guestdashboard.module";
+import { GustregistrationPageModule } from "./../pages/gustregistration/gustregistration.module";
 import { PinrequestPageModule } from "./../pages/pinrequest/pinrequest.module";
 import { PintransferreportPageModule } from "./../pages/pintransferreport/pintransferreport.module";
 import { PintransferPageModule } from "./../pages/pintransfer/pintransfer.module";
@@ -48,7 +50,8 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [MyApp, HomePage],
   imports: [
-  
+    ViewpackagePageModule,
+    GuestdashboardPageModule,
     GustregistrationPageModule,
     HttpClientModule,
     ChangepasswordPageModule,

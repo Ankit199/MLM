@@ -10,7 +10,7 @@
         <ion-icon name="speedometer"></ion-icon>
         डैशबोर्ड (Dashboard)
       </button>
-      <button ion-item (click)="GoToDownline()">
+      <button *ngIf="isloginType==='main'" ion-item (click)="GoToDownline()">
         <ion-icon name="speedometer"></ion-icon>
         निचली पंक्ति (Downline)
       </button>
@@ -18,7 +18,7 @@
         <ion-icon name="bulb"></ion-icon>
         योजना (Plan)
       </button>
-      <button ion-item (click)="GoToBonus()">
+      <button *ngIf="isloginType==='main'" ion-item (click)="GoToBonus()">
         <ion-icon name="trophy"></ion-icon>
         बोनस अंक (Bonus Point)
       </button>
@@ -26,11 +26,11 @@
         <ion-icon name="megaphone"></ion-icon>
         उपहार (Gift)
       </button>
-      <button ion-item (click)="GoTopin()">
+      <button *ngIf="isloginType==='main'" ion-item (click)="GoTopin()">
         <ion-icon name="pin"></ion-icon>
         Pin
       </button>
-      <button ion-item (click)="GoTocpass()">
+      <button *ngIf="isloginType==='main'" ion-item (click)="GoTocpass()">
         <ion-icon name="call"></ion-icon>
         Change Password
       </button>

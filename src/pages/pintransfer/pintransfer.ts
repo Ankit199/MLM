@@ -1,3 +1,6 @@
+import { PinrequestPage } from "./../pinrequest/pinrequest";
+import { PintransferreportPage } from "./../pintransferreport/pintransferreport";
+import { PindetailsPage } from "./../pindetails/pindetails";
 import { CommonfunctionProvider } from "./../../providers/commonfunction/commonfunction";
 import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
 import { Component } from "@angular/core";
@@ -48,6 +51,15 @@ export class PintransferPage {
     this.objpinmodel.fkid = this.sett.dashboard[0].FK_MemId;
     console.log("ionViewDidLoad PintransferPage");
   }
+  gotopindetail = () => {
+    this.navCtrl.push(PindetailsPage);
+  };
+  gotopinrequest = () => {
+    this.navCtrl.push(PinrequestPage);
+  };
+  gotopinreport = () => {
+    this.navCtrl.push(PintransferreportPage);
+  };
 
   countpin = pid => {
     this.objpinmodel.act = pid;

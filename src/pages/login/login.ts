@@ -26,10 +26,9 @@ export class LoginPage {
   loginform = {
     user: "",
     pass: "",
-    isRemember:true
+    isRemember: true
   };
   constructor(
-   
     public events: Events,
     public setting: SettingsProvider,
     public comn: CommonfunctionProvider,
@@ -43,7 +42,6 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-
     console.log("ionViewDidLoad LoginPage");
   }
 
@@ -56,8 +54,8 @@ export class LoginPage {
       let settings = this.setting.getallSettings();
       // console.table(settings);
       if (settings.rememberMe) {
-        this.loginform.user= settings.user;
-        this.loginform.pass= settings.password;
+        this.loginform.user = settings.user;
+        this.loginform.pass = settings.password;
         this.loginform.isRemember = settings.rememberMe;
         this.GoToDashboard();
       }
@@ -68,7 +66,6 @@ export class LoginPage {
     this.navCtrl.push(PlanPage);
   };
   GoToDashboard = () => {
-
     console.log(this.loginform);
 
     let loading = this.comn.presentLoadingDefault();
@@ -79,6 +76,7 @@ export class LoginPage {
         if (!res[0].IsBlocked) {
           loading.dismiss();
           this.events.publish("userinfo", res);
+          this.events.publish("isloginType", "main");
           this.setting.setValue("fkmemid", res[0].FK_MemId);
           this.setting.setValue("user", this.loginform.user);
           this.setting.setValue("password", this.loginform.pass);
@@ -94,7 +92,7 @@ export class LoginPage {
         }
       } else {
         loading.dismiss();
-   
+
         let alert = this.comn.createAlert(
           "Alert!",
           "MemberID and Password not valid. please check and try again."
