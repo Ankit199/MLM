@@ -120,7 +120,7 @@ if( this.adet.noOfPins.length>0){
   this.adet.createdBy = this.userref;
   this.api.epinrequest(this.adet).subscribe((res:any)=>{
     loading.dismiss();
-    if(res)
+    if(res){
   },error=>{
     loading.dismiss();
     console.log(error);
@@ -135,4 +135,5 @@ console.log(this.adet);
   alert.present();
 }
   }
+  
 }
