@@ -77,6 +77,7 @@ export class LoginPage {
           loading.dismiss();
           this.events.publish("userinfo", res);
           this.events.publish("isloginType", "main");
+          this.setting.setValue("isloginType", "main");
           this.setting.setValue("fkmemid", res[0].FK_MemId);
           this.setting.setValue("user", this.loginform.user);
           this.setting.setValue("password", this.loginform.pass);

@@ -4,6 +4,7 @@ import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams, Events } from "ionic-angular";
 import { SettingsProvider } from "../../providers/settings/settings";
+import { THIS_EXPR } from "@angular/compiler/src/output/output_ast";
 
 /**
  * Generated class for the GustregistrationPage page.
@@ -52,6 +53,8 @@ export class GustregistrationPage {
           console.log("***Guest Result ****" + result);
           this.events.publish("isloginType", "guest");
           this.events.publish("userinfo", result);
+          this.setting.setValue("isloginType", "guest");
+          this.setting.setValue("guest", result);
           this.objguest.name = "";
           this.objguest.password = "";
 

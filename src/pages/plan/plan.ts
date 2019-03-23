@@ -1,3 +1,4 @@
+import { SettingsProvider } from "./../../providers/settings/settings";
 import { ViewpackagePage } from "./../viewpackage/viewpackage";
 import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
 import { Component } from "@angular/core";
@@ -21,6 +22,7 @@ export class PlanPage {
   fkid: any = "";
   constructor(
     public events: Events,
+    public setting: SettingsProvider,
     public api: ApiserviceProvider,
     public navCtrl: NavController,
     public navParams: NavParams
@@ -39,6 +41,12 @@ export class PlanPage {
   }
 
   ionViewDidLoad() {
+    let set = this.setting.getallSettings();
+    this.isloginType = set.isloginType;
+    if (this.isloginType !== "main") {
+      this.fkid = set.guest[0].fkid;
+    }
+
     console.log("ionViewDidLoad PlanPage");
   }
   requestplanA = () => {

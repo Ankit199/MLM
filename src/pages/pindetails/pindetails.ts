@@ -9,10 +9,10 @@ import { ProductdetailPage } from "./../productdetail/productdetail";
 import { Component } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { RegisterPage } from "../register/register";
-
+import moment from "moment";
 /**
  * Generated class for the PindetailsPage page.
- *
+ *moment(date).format("MM-DD-YYYY hh:mmA");
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
@@ -58,6 +58,9 @@ export class PindetailsPage {
       (res: any) => {
         loading.dismiss();
         this.epin = res;
+        this.epin.forEach(x => {
+          x.CreatedDate = moment(x.CreatedDate).format("DD/MM/YYYY hh:mmA");
+        });
         console.table(this.epin);
       },
       error => {

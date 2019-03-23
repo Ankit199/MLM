@@ -195,4 +195,7 @@ export class RegisterPage {
       }
     );
   };
+  reset = () => {
+    this.navCtrl.pop();
+  };
 }

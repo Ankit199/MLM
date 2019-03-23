@@ -1,5 +1,5 @@
 import { SettingsProvider } from "./../settings/settings";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { stringify } from "@angular/core/src/render3/util";
 
@@ -141,16 +141,36 @@ export class ApiserviceProvider {
     console.log("epindetail" + furl);
     return this._http.post(this.url + furl, {});
   };
- 
-  redeem /** Redeem skip rewards */= (obj)=>{
-    let furl = `Rewards/UpdateRewardStatus/?MemId=${obj.fkid}&SetRewardId=1&action=${obj.rewardstatus}`;    
+
+  redeem /** Redeem skip rewards */ = obj => {
+    let furl = `Rewards/UpdateRewardStatus/?MemId=${
+      obj.fkid
+    }&SetRewardId=1&action=${obj.rewardstatus}`;
     return this._http.post(this.url + furl, {});
-  }
+  };
 
-  epinrequest /** Epin request for product */=(objpinrequest)=>{
-    //http://api.contosonatura.com/api/ProductDetails/UserEpinRequest/
-    let furl= `/ProductDetails/UserEpinRequest/`;
-    return this._http.post(this.url + furl, JSON.stringify(objpinrequest));
-  }
-
+  epinrequest /** Epin request for product */ = objpinrequest => {
+    var headers = new HttpHeaders().set(
+      "Content-Type",
+      "application/json; charset=utf-8"
+    );
+    let furl = `ProductDetails/UserEpinRequest/`;
+    return this._http.post(this.url + furl, JSON.stringify(objpinrequest), {
+      headers
+    });
+  };
+  forgotpasswoord = obj => {
+    let furl = `UserLogin/PasswordRecovery/?loginId=${obj.mid}&Mobile=${
+      obj.mobile
+    }`;
+    return this._http.post(this.url + furl, {});
+  };
+  GuestproductRegistration = objguest => {
+    var headers = new HttpHeaders().set(
+      "Content-Type",
+      "application/json; charset=utf-8"
+    );
+    let furl = `GuestProductRequest/ProductRequest/`;
+    return this._http.post(this.url + furl, objguest, { headers });
+  };
 }

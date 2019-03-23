@@ -73,7 +73,8 @@
 
     <ion-item>
       <ion-label>Payment Mode:</ion-label>
-      <ion-select (ionChange)="getmode()" interface="popover" placeholder="Select Payment Mode" [(ngModel)]="objepin.pmode">
+      <ion-select (ionChange)="getmode()" interface="popover" placeholder="Select Payment Mode"
+        [(ngModel)]="objepin.pmode">
         <ion-option value="Cheque">Cheque</ion-option>
         <ion-option value="Cash">Cash</ion-option>
         <ion-option value="BankersCheque">Bankers Cheque</ion-option>
@@ -100,7 +101,8 @@
 
       </ion-item>
       <ion-item>
-        <ion-datetime [(ngModel)]="objepin.cdtd" placeholder="Cheque/DD Date/Transaction Date" displayFormat="DD/MM/YYYY">
+        <ion-datetime [(ngModel)]="objepin.cdtd" placeholder="Cheque/DD Date/Transaction Date"
+          displayFormat="DD/MM/YYYY">
         </ion-datetime>
         <!-- <ion-input [(ngModel)]="objepin.cdtd" placeholder="Cheque/DD Date/Transaction Date"></ion-input> -->
       </ion-item>
@@ -127,7 +129,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons>
-      <button ion-button>Contoso Ujala</button>
+      <button ion-button>Contoso उजाला</button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

@@ -97,6 +97,10 @@ export class MyApp {
     keyArray.push("rememberMe");
     keyArray.push("user");
     keyArray.push("password");
+    keyArray.push("dashboard");
+    keyArray.push("isloginType"); //fkmemid
+    keyArray.push("fkmemid");
+    keyArray.push("guest");
     this.settings.removeKey(keyArray).then(__ => {
       this.navCtrl.setRoot(LoginPage);
       // this.settings.setValue('isLogin', false);

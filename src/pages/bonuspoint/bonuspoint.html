@@ -2,34 +2,37 @@
   <ion-navbar>
     <ion-title>
       <ion-icon name="menu" menuToggle class='menu-icon'></ion-icon>
-     बोनस अंक
+      बोनस अंक
       <div class="logo"><img src="../../assets/images/contoso_natura_logo.png"></div>
     </ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
   <h2>बोनस अंकों पर आधारित उपहार योजना <br>(नगद या गिफ्ट - कोई एक)
-</h2>
+  </h2>
   <ion-card>
     <table>
       <thead>
         <tr>
-          <th>क्रम सख्या</th>        
-          <th>बोनस अंक / <br/> नगद</th>
-          <th>गिफ्ट</th>
+          <th>क्रम सख्या</th>
+          <th>बोनस अंक</th>
+          <th>गिफ्ट<br />(नगद)</th>
           <th colspan="2">स्थिति</th>
         </tr>
       </thead>
       <tbody>
-        
+
         <!-- Dynamic Layout Added  -->
-        <tr [style.background-color]="reward.RewardStatus == 'Pending' ? ' ' : 'green'" *ngFor="let reward of rewardlist;let i=index;">
-          <td>{{i+1}}</td>        
-          <td>{{reward.TargetPV}} / <br/>{{reward.RewardAmount}} Rs.</td>
-          <td>{{reward.RewardName}}</td>
-          <td *ngIf="reward.RewardPaymentstatus !== ''"  class="text-center" colspan="2">{{reward.RewardClaim}} </td>
-          <td *ngIf="reward.RewardClaim == 'Pending' && reward.RewardStatus !== 'Pending'" class="text-center"><a href="javascript:void(0)" (click)="claimreward('Redeem')" >Redeem</a></td>
-          <td *ngIf="reward.RewardClaim == 'Pending' && reward.RewardStatus !== 'Pending' " class="text-center"> <a href="javascript:void(0)" (click)="claimreward('Skip')">Skip</a></td>
+        <tr [style.background-color]="reward.RewardStatus == 'Pending' ? ' ' : 'green'"
+          *ngFor="let reward of rewardlist;let i=index;">
+          <td>{{i+1}}</td>
+          <td>{{reward.TargetPV}} </td>
+          <td>{{reward.RewardName}}<br />({{reward.RewardAmount}} Rs.)</td>
+          <td *ngIf="reward.RewardPaymentstatus !== ''" class="text-center" colspan="2">{{reward.RewardClaim}} </td>
+          <td *ngIf="reward.RewardClaim == 'Pending' && reward.RewardStatus !== 'Pending'" class="text-center"><a
+              href="javascript:void(0)" (click)="claimreward('Redeem')">Redeem</a></td>
+          <td *ngIf="reward.RewardClaim == 'Pending' && reward.RewardStatus !== 'Pending' " class="text-center"> <a
+              href="javascript:void(0)" (click)="claimreward('Skip')">Skip</a></td>
         </tr>
         <!-- Dynamic Layout Close  -->
       </tbody>

@@ -32,8 +32,8 @@
       <li>Transportation of Product paid by member</li>
     </ol>
   </ion-card>
-  <button *ngIf="isloginType==='main'" ion-button>PLAN B</button>
-  <button *ngIf="isloginType!=='main'" (click)="requestplanB()" ion-button>Click to request PLAN B</button>
+  <button *ngIf="isloginType=='main'" ion-button>PLAN B</button>
+  <button *ngIf="isloginType =='guest'" (click)="requestplanB()" ion-button>Click to request PLAN B</button>
   <h2>Solar Mini Home Light System</h2>
   <ion-card>
     <button ion-button>सदस्यता शुल्क- 4500/-</button>
