@@ -34,6 +34,7 @@
     "@ionic-native/status-bar": "~4.17.0",
     "@ionic/storage": "2.2.0",
     "@types/google-maps": "^3.2.0",
+    "angular-cli-ghpages": "^0.5.3",
     "cordova-android": "7.1.4",
     "cordova-browser": "5.0.4",
     "cordova-ios": "^4.5.5",
