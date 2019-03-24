@@ -36,7 +36,7 @@ export class PinrequestPage {
     productB: {
       product: "B",
       pin: 0,
-      price: 9000,
+      price: 4500,
       total: 0
     },
     total: 0,

@@ -14,8 +14,8 @@
     <table>
       <thead>
         <tr>
-          <th>क्रम सख्या</th>
-          <th>बोनस अंक</th>
+          <th>क्रम <br /> सख्या</th>
+          <th>बोनस <br /> अंक</th>
           <th>गिफ्ट<br />(नगद)</th>
           <th colspan="2">स्थिति</th>
         </tr>
@@ -27,7 +27,7 @@
           *ngFor="let reward of rewardlist;let i=index;">
           <td>{{i+1}}</td>
           <td>{{reward.TargetPV}} </td>
-          <td>{{reward.RewardName}}<br />({{reward.RewardAmount}} Rs.)</td>
+          <td>{{reward.RewardName}}<br /> OR <br />{{reward.RewardAmount}} Rs.</td>
           <td *ngIf="reward.RewardPaymentstatus !== ''" class="text-center" colspan="2">{{reward.RewardClaim}} </td>
           <td *ngIf="reward.RewardClaim == 'Pending' && reward.RewardStatus !== 'Pending'" class="text-center"><a
               href="javascript:void(0)" (click)="claimreward('Redeem')">Redeem</a></td>
