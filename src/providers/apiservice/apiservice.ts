@@ -52,9 +52,13 @@ export class ApiserviceProvider {
   };
   regmember = obj => {
     this.refreshSettings();
-    let murl = this.url + `Registration/MemberRegistration/?` + obj;
-    console.log(murl);
-    return this._http.post(murl, {});
+    var headers = new HttpHeaders().set(
+      "Content-Type",
+      "application/json; charset=utf-8"
+    );
+    let murl = this.url + `Registration/MemberRegistration/`;
+    console.log("Registration api method Hir " + obj);
+    return this._http.post(murl, JSON.stringify(obj), { headers });
   };
 
   validateepin = epin => {
@@ -91,6 +95,7 @@ export class ApiserviceProvider {
     );
   };
   GuestRegistration = objguest => {
+    this.refreshSettings();
     return this._http.post(
       this.url +
         `GuestRegistration/TempRegistration/?Name=${objguest.name}&mobile=${
@@ -101,6 +106,7 @@ export class ApiserviceProvider {
   };
 
   countPins = objpincount => {
+    this.refreshSettings();
     return this._http.post(
       this.url +
         `ProductDetails/GetTotalEpin/?MemId=${objpincount.fkid}&ProductId=${
@@ -110,12 +116,14 @@ export class ApiserviceProvider {
     );
   };
   validatepinid = loginid => {
+    this.refreshSettings();
     return this._http.post(
       this.url + `Registration/ValidateUser/?loginID=${loginid}`,
       {}
     );
   };
   transferpin = objmodelpin => {
+    this.refreshSettings();
     return this._http.post(
       this.url +
         `ProductDetails/TransferEpin/?MemId=${objmodelpin.fkid}&ToMemId=${
@@ -125,6 +133,7 @@ export class ApiserviceProvider {
     );
   };
   pintransferreport = (obj: any) => {
+    this.refreshSettings();
     let furl = `ProductDetails/TransferEpinDetails/?LoginId=${
       obj.loginID
     }&toLoginId=${obj.TOloginID}&status=${obj.status}&fromDate=${
@@ -135,6 +144,7 @@ export class ApiserviceProvider {
   };
 
   epindetail = (objdetail: any) => {
+    this.refreshSettings();
     let furl = `ProductDetails/ProductDetails/?MemId=${
       objdetail.fkid
     }&ProductId=${objdetail.pid}&isRegistered=${objdetail.pin}`;
@@ -143,13 +153,15 @@ export class ApiserviceProvider {
   };
 
   redeem /** Redeem skip rewards */ = obj => {
+    this.refreshSettings();
     let furl = `Rewards/UpdateRewardStatus/?MemId=${
       obj.fkid
     }&SetRewardId=1&action=${obj.rewardstatus}`;
     return this._http.post(this.url + furl, {});
   };
 
-  epinrequest /** Epin request for product */ = objpinrequest => {
+  epinrequest = objpinrequest => {
+    this.refreshSettings();
     var headers = new HttpHeaders().set(
       "Content-Type",
       "application/json; charset=utf-8"
@@ -160,12 +172,14 @@ export class ApiserviceProvider {
     });
   };
   forgotpasswoord = obj => {
+    this.refreshSettings();
     let furl = `UserLogin/PasswordRecovery/?loginId=${obj.mid}&Mobile=${
       obj.mobile
     }`;
     return this._http.post(this.url + furl, {});
   };
   GuestproductRegistration = objguest => {
+    this.refreshSettings();
     var headers = new HttpHeaders().set(
       "Content-Type",
       "application/json; charset=utf-8"

@@ -71,23 +71,14 @@ export class ViewpackagePage {
     public comn: CommonfunctionProvider,
     public api: ApiserviceProvider
   ) {
-    let values =
-      this.navParams.get("plan") == undefined
-        ? "C"
-        : this.navParams.get("plan");
+    let values: any =
+      this.navParams.get("plan") == undefined ? [] : this.navParams.get("plan");
     console.log(values);
-    if (values == "A") {
-      this.title = "Request For Plan A 8500";
-      this.MemberInfo.productId.push("1");
+    if (values !== undefined) {
+      this.title = values.ProductName;
+      this.MemberInfo.productId.push(values.PK_ProductId);
       this.MemberInfo.noOfPins.push("1");
-      this.objepin.pinamount = 8500;
-    } else if (values == "B") {
-      this.objepin.pinamount = 4500;
-      this.MemberInfo.productId.push("2");
-      this.MemberInfo.noOfPins.push("2");
-      this.title = "Request For Plan B 4500";
-    } else {
-      this.navCtrl.pop();
+      this.objepin.pinamount = values.ProductPrice;
     }
   }
   getmodedispacth = () => {
@@ -230,6 +221,8 @@ export class ViewpackagePage {
   guestProductRequest = () => {
     if (this.validate()) {
       if (this.validatepayment()) {
+        let loading = this.comn.presentLoadingDefault();
+        loading.present();
         const adet = {
           productId: this.MemberInfo.productId,
           noOfPins: this.MemberInfo.noOfPins,
@@ -262,6 +255,7 @@ export class ViewpackagePage {
         console.table(data);
         this.api.GuestproductRegistration(JSON.stringify(data)).subscribe(
           (res: any) => {
+            loading.dismiss();
             console.log(res);
             if (res[0].Msg == "1") {
               let alert = this.comn.createAlert(
@@ -281,6 +275,7 @@ export class ViewpackagePage {
             }
           },
           err => {
+            loading.dismiss();
             console.log(err);
             let alert = this.comn.createAlert(
               "Error !",

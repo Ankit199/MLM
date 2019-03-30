@@ -1,3 +1,4 @@
+import { CommonfunctionProvider } from "./../../providers/commonfunction/commonfunction";
 import { SettingsProvider } from "./../../providers/settings/settings";
 import { ViewpackagePage } from "./../viewpackage/viewpackage";
 import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
@@ -25,9 +26,10 @@ export class PlanPage {
     public setting: SettingsProvider,
     public api: ApiserviceProvider,
     public navCtrl: NavController,
+    public comn: CommonfunctionProvider,
     public navParams: NavParams
   ) {
-    //this.getproduct();
+    this.getproduct();
     this.events.subscribe("isloginType", islogin => {
       console.log(islogin);
       this.isloginType = islogin;
@@ -49,9 +51,9 @@ export class PlanPage {
 
     console.log("ionViewDidLoad PlanPage");
   }
-  requestplanA = () => {
+  requestplanA = item => {
     this.navCtrl.push(ViewpackagePage, {
-      plan: "A"
+      plan: item
     });
   };
   requestplanB = () => {
@@ -60,12 +62,16 @@ export class PlanPage {
     });
   };
   getproduct = () => {
+    let loading = this.comn.presentLoadingDefault();
+    loading.present();
     this.api.getProduct().subscribe(
       (res: any) => {
+        loading.dismiss();
         this.product = res;
         console.table(this.product);
       },
       err => {
+        loading.dismiss();
         console.log(err);
       }
     );
