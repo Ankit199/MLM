@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { DashboardPage } from '../dashboard/dashboard';
+import { Component } from "@angular/core";
+import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { DashboardPage } from "../dashboard/dashboard";
 
 /**
  * Generated class for the ProductdetailPage page.
@@ -11,19 +11,16 @@ import { DashboardPage } from '../dashboard/dashboard';
 
 @IonicPage()
 @Component({
-  selector: 'page-productdetail',
-  templateUrl: 'productdetail.html',
+  selector: "page-productdetail",
+  templateUrl: "productdetail.html"
 })
 export class ProductdetailPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductdetailPage');
+    console.log("ionViewDidLoad ProductdetailPage");
   }
-  GoToDashboard=()=>{
+  GoToDashboard = () => {
     this.navCtrl.push(DashboardPage);
-  }
-
+  };
 }

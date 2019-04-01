@@ -14,6 +14,8 @@ import { ApiserviceProvider } from "../../providers/apiservice/apiservice";
 })
 export class PinrequestPage {
   /** Product request Model Create Begin*/
+  product: any = [];
+  total: any = 0;
   adet = {
     productId: [],
     noOfPins: [],
@@ -57,6 +59,7 @@ export class PinrequestPage {
   ) {
     let sett = this.setting.getallSettings();
     this.userref = sett.fkmemid;
+    this.getproduct();
   }
 
   ionViewDidLoad() {
@@ -72,29 +75,38 @@ export class PinrequestPage {
     this.navCtrl.push(PintransferreportPage);
   };
   pinchange = (pin: any) => {
-    if (pin == "A") {
-      let pins =
-        this.objepin.productA.pin.toString() == ""
-          ? "0"
-          : this.objepin.productA.pin;
-      this.objepin.productA.total = Number(pins) * this.objepin.productA.price;
-      this.objepin.total =
-        this.objepin.productB.total + this.objepin.productA.total;
-      if (pins == "0") {
-        this.objepin.productA.pin = 0;
-      }
-    } else if (pin == "B") {
-      let pinss =
-        this.objepin.productB.pin.toString() == ""
-          ? "0"
-          : this.objepin.productB.pin;
-      this.objepin.productB.total = Number(pinss) * this.objepin.productB.price;
-      this.objepin.total =
-        this.objepin.productB.total + this.objepin.productA.total;
-      if (pinss == "0") {
-        this.objepin.productB.pin = 0;
-      }
-    }
+    this.product[pin].pin =
+      this.product[pin].pin == "" ? 0 : this.product[pin].pin;
+
+    this.product[pin].total =
+      Number(this.product[pin].pin) * Number(this.product[pin].ProductPrice);
+    this.total = 0;
+    this.product.forEach(element => {
+      this.total += Number(element.total);
+    });
+    // if (pin == "A") {
+    //   let pins =
+    //     this.objepin.productA.pin.toString() == ""
+    //       ? "0"
+    //       : this.objepin.productA.pin;
+    //   this.objepin.productA.total = Number(pins) * this.objepin.productA.price;
+    //   this.objepin.total =
+    //     this.objepin.productB.total + this.objepin.productA.total;
+    //   if (pins == "0") {
+    //     this.objepin.productA.pin = 0;
+    //   }
+    // } else if (pin == "B") {
+    //   let pinss =
+    //     this.objepin.productB.pin.toString() == ""
+    //       ? "0"
+    //       : this.objepin.productB.pin;
+    //   this.objepin.productB.total = Number(pinss) * this.objepin.productB.price;
+    //   this.objepin.total =
+    //     this.objepin.productB.total + this.objepin.productA.total;
+    //   if (pinss == "0") {
+    //     this.objepin.productB.pin = 0;
+    //   }
+    // }
   };
   getmode = () => {
     if (this.objepin.pmode == "Cash") {
@@ -113,26 +125,34 @@ export class PinrequestPage {
     this.objepin.productB.pin = 0;
     this.objepin.productA.total = 0;
     this.objepin.productB.total = 0;
+    this.total = 0;
+    this.product.forEach(y => {
+      y.pin = 0;
+      y.total = 0;
+    });
+
     this.objepin.pinamount = 0;
     this.objepin.pmode = "Cash";
     this.isCash = true;
   };
 
   epinrequest = () => {
-    if (
-      this.objepin.productA.pin.toString() !== "" ||
-      this.objepin.productA.pin.toString() !== "0"
-    ) {
-      this.adet.productId.push("1");
-      this.adet.noOfPins.push(this.objepin.productA.pin);
+    let piinarr: any = this.product.filter(x => x.pin == 0);
+    if (piinarr.length == this.product.length) {
+      console.log(piinarr);
+      let alert = this.comn.createAlert(
+        "Alert!",
+        "Please Enter Number Of Pins."
+      );
+      alert.present();
+      return;
+    } else {
+      this.product.forEach(x => {
+        this.adet.productId.push(x.PK_ProductId);
+        this.adet.noOfPins.push(x.pin);
+      });
     }
-    if (
-      this.objepin.productB.pin.toString() !== "" ||
-      this.objepin.productB.pin.toString() !== "0"
-    ) {
-      this.adet.productId.push("2");
-      this.adet.noOfPins.push(this.objepin.productB.pin);
-    }
+
     if (this.adet.noOfPins.length > 0) {
       if (this.objepin.pmode == "Cash") {
         this.adet.paymentMode = this.objepin.pmode;
@@ -212,5 +232,24 @@ export class PinrequestPage {
       );
       alert.present();
     }
+  };
+  getproduct = () => {
+    let loading = this.comn.presentLoadingDefault();
+    loading.present();
+    this.api.getProduct().subscribe(
+      (res: any) => {
+        loading.dismiss();
+        this.product = res;
+        this.product.forEach(x => {
+          x.pin = 0;
+          x.total = 0;
+        });
+        console.table(this.product);
+      },
+      err => {
+        loading.dismiss();
+        console.log(err);
+      }
+    );
   };
 }

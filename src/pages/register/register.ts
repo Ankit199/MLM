@@ -111,7 +111,7 @@ export class RegisterPage {
     pinCode=${user.pinCode}&
     createdBy=${user.cerateby}`;
     console.log(param);
-    this.api.regmember(param).subscribe(
+    this.api.regmember(user).subscribe(
       (res: any) => {
         console.log(res);
         loading.dismiss();

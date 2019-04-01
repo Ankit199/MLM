@@ -49,13 +49,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Plan A 8500</td>
-          <td>{{objepin.productA.price}}</td>
-          <td><input (change)="pinchange('A')" ion-input [(ngModel)]="objepin.productA.pin" /></td>
-          <td>{{objepin.productA.total}}</td>
+        <tr *ngFor="let item of product;let i=index; ">
+          <td>{{item.ProductName}}</td>
+          <td>{{item.ProductPrice}}</td>
+          <td><input (change)="pinchange(i)" ion-input [(ngModel)]="item.pin" /></td>
+          <td>{{item.total}}</td>
         </tr>
-        <tr>
+        <tr style="display:none">
           <td>Plan B 4500</td>
           <td>{{objepin.productB.price}}</td>
           <td><input (change)="pinchange('B')" ion-input [(ngModel)]="objepin.productB.pin" /></td>
@@ -63,7 +63,7 @@
         </tr>
         <tr>
           <td class="text-right" colspan="3"><strong>TOTAL &nbsp;</strong></td>
-          <td>{{objepin.total}}</td>
+          <td>{{total}}</td>
         </tr>
       </tbody>
     </table>
@@ -85,7 +85,7 @@
     <!-- condition Based -->
     <ion-item>
       <ion-label>Payment Amount:</ion-label>
-      <ion-input readonly [(ngModel)]="objepin.total" placeholder="0" [(ngModel)]="objepin.pinamount"></ion-input>
+      <ion-input readonly [(ngModel)]="total" placeholder="0"></ion-input>
     </ion-item>
     <div *ngIf="! isCash">
       <ion-item>

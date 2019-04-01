@@ -16,26 +16,23 @@
       <li>उपहार योजना बोनस अंकों पर आधारित हैं। जितने बोनस अंक होंगे उसी के आधार पर उपहार दिया जायेगा।</li>
     </ol>
   </ion-card>
-  <button *ngIf="isloginType==='main'" ion-button>PLAN A</button>
-  <button *ngIf="isloginType!=='main'" (click)="requestplanA()" ion-button>Click to request PLAN A</button>
-  <h2>Solar Magic Home Light System</h2>
-  <ion-card>
-    <button ion-button>सदस्यता शुल्क- 8500/-</button>
-    <ol>
-      <li>Solar Battery - 45 AH (एक साल गारंटी)</li>
-      <li>Solar Panel 65 Watt - 1</li>
-      <li>Solar Magic Box with Mobile Charger - 1</li>
-      <li>Solar Bulb - 6 Watt (3 Pcs.)</li>
-      <li>Connecting Wire and Cables.</li>
-      <li>Solar DC Fan - 24 Watt - 1</li>
-      <li>Free Installation</li>
-      <li>Transportation of Product paid by member</li>
-    </ol>
-  </ion-card>
-  <button *ngIf="isloginType=='main'" ion-button>PLAN B</button>
+  <div *ngFor="let item of product">
+    <button style="white-space:normal !important; word-wrap: break-word; word-break: normal;"
+      *ngIf="isloginType==='main'" ion-button>{{item.ProductName}}</button>
+    <button style="white-space:normal !important; word-wrap: break-word; word-break: normal;"
+      *ngIf="isloginType!=='main'" (click)="requestplanA(item)" ion-button>Click here to request <br />
+      {{item.ProductName}}</button>
+    <h2>{{item.Description}}</h2>
+    <ion-card>
+      <button ion-button>सदस्यता शुल्क- {{item.ProductPrice}}/-</button>
+
+    </ion-card>
+  </div>
+
+  <!-- <button *ngIf="isloginType=='main'" ion-button>PLAN B</button>
   <button *ngIf="isloginType =='guest'" (click)="requestplanB()" ion-button>Click to request PLAN B</button>
-  <h2>Solar Mini Home Light System</h2>
-  <ion-card>
+  <h2>Solar Mini Home Light System</h2> -->
+  <!-- <ion-card>
     <button ion-button>सदस्यता शुल्क- 4500/-</button>
     <ol>
       <li>Solar Battery - 20 AH (एक साल गारंटी)</li>
@@ -46,7 +43,7 @@
       <li>Free Installation</li>
       <li>Transportation of product paid by member</li>
     </ol>
-  </ion-card>
+  </ion-card> -->
 </ion-content>
 <ion-footer>
   <ion-toolbar>
