@@ -164,139 +164,6 @@ var SettingsProvider = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiserviceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(298);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var ApiserviceProvider = /** @class */ (function () {
-    function ApiserviceProvider(_http, settings) {
-        var _this = this;
-        this._http = _http;
-        this.settings = settings;
-        this.url = "http://api.contosonatura.com/api/";
-        this.dologin /* Member Login */ = function (objlogin) {
-            _this.refreshSettings();
-            return _this._http.post(_this.url +
-                ("UserLogin/Login/?loginId=" + objlogin.user + "&password=" + objlogin.pass), {});
-        };
-        this.getReward /* Reward list */ = function (fkid) {
-            _this.refreshSettings();
-            return _this._http.post(_this.url + ("Rewards/MemberRewards/?MemId=" + fkid), {});
-        };
-        this.getstates = function () {
-            return _this._http.post(_this.url + "Registration/StateMaster/", {});
-        };
-        this.getCitybyStID = function (stid) {
-            _this.refreshSettings();
-            return _this._http.post(_this.url + ("Registration/CityMaster/?StateId=" + stid), {});
-        };
-        this.validatesponser = function (loginid) {
-            _this.refreshSettings();
-            return _this._http.post(_this.url + ("Registration/ValidateUser/?loginID=" + loginid), {});
-        };
-        this.regmember = function (obj) {
-            _this.refreshSettings();
-            var murl = _this.url + "Registration/MemberRegistration/?" + obj;
-            console.log(murl);
-            return _this._http.post(murl, {});
-        };
-        this.validateepin = function (epin) {
-            _this.refreshSettings();
-            return _this._http.post(_this.url + ("Registration/ValidateEpin/?ePinNo=" + epin), {});
-        };
-        this.getProduct = function () {
-            _this.refreshSettings();
-            return _this._http.post(_this.url + "ProductDetails/ProductMaster/", {});
-        };
-        this.getDownline = function (obj) {
-            _this.refreshSettings();
-            return _this._http.post(_this.url +
-                ("Registration/AllDownLine/?fromDate=" + obj.fdate + "&toDate=" + obj.tdate + "&loginId=" + obj.loginId + "&status=" + obj.status + "&fK_ProductID=" + obj.Fkpid), {});
-        };
-        this.chanagepassword = function (obj) {
-            _this.refreshSettings();
-            return _this._http.post(_this.url +
-                ("UserLogin/ChangePassword/?loginId=" + obj.LoginID + "&oldPassword=" + obj.oldPassword + "&newPassword=" + obj.newPassword + "&updatedBy=" + obj.fkid), {});
-        };
-        this.GuestRegistration = function (objguest) {
-            return _this._http.post(_this.url +
-                ("GuestRegistration/TempRegistration/?Name=" + objguest.name + "&mobile=" + objguest.password), {});
-        };
-        this.countPins = function (objpincount) {
-            return _this._http.post(_this.url +
-                ("ProductDetails/GetTotalEpin/?MemId=" + objpincount.fkid + "&ProductId=" + objpincount.pid), {});
-        };
-        this.validatepinid = function (loginid) {
-            return _this._http.post(_this.url + ("Registration/ValidateUser/?loginID=" + loginid), {});
-        };
-        this.transferpin = function (objmodelpin) {
-            return _this._http.post(_this.url +
-                ("ProductDetails/TransferEpin/?MemId=" + objmodelpin.fkid + "&ToMemId=" + objmodelpin.tmid + "&ProductId=" + objmodelpin.pid + "&noOfePin=" + objmodelpin.pin), {});
-        };
-        this.pintransferreport = function (obj) {
-            var furl = "ProductDetails/TransferEpinDetails/?LoginId=" + obj.loginID + "&toLoginId=" + obj.TOloginID + "&status=" + obj.status + "&fromDate=" + obj.fdate + "&toDate=" + obj.tdate + "&ProductId=" + obj.product;
-            console.log("report" + furl);
-            return _this._http.post(_this.url + furl, {});
-        };
-        this.epindetail = function (objdetail) {
-            var furl = "ProductDetails/ProductDetails/?MemId=" + objdetail.fkid + "&ProductId=" + objdetail.pid + "&isRegistered=" + objdetail.pin;
-            console.log("epindetail" + furl);
-            return _this._http.post(_this.url + furl, {});
-        };
-        this.redeem /** Redeem skip rewards */ = function (obj) {
-            var furl = "Rewards/UpdateRewardStatus/?MemId=" + obj.fkid + "&SetRewardId=1&action=" + obj.rewardstatus;
-            return _this._http.post(_this.url + furl, {});
-        };
-        this.epinrequest /** Epin request for product */ = function (objpinrequest) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set("Content-Type", "application/json; charset=utf-8");
-            var furl = "ProductDetails/UserEpinRequest/";
-            return _this._http.post(_this.url + furl, JSON.stringify(objpinrequest), {
-                headers: headers
-            });
-        };
-        this.forgotpasswoord = function (obj) {
-            var furl = "UserLogin/PasswordRecovery/?loginId=" + obj.mid + "&Mobile=" + obj.mobile;
-            return _this._http.post(_this.url + furl, {});
-        };
-        this.GuestproductRegistration = function (objguest) {
-            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set("Content-Type", "application/json; charset=utf-8");
-            var furl = "GuestProductRequest/ProductRequest/";
-            return _this._http.post(_this.url + furl, objguest, { headers: headers });
-        };
-        console.log("Hello ApiserviceProvider Provider");
-    }
-    ApiserviceProvider.prototype.refreshSettings = function () {
-        this.settingsconfig = this.settings.getallSettings();
-        console.log("********* Stting Log *******");
-        console.table(this.settingsconfig);
-    };
-    ApiserviceProvider = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["B" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_0__settings_settings__["a" /* SettingsProvider */]])
-    ], ApiserviceProvider);
-    return ApiserviceProvider;
-}());
-
-//# sourceMappingURL=apiservice.js.map
-
-/***/ }),
-
-/***/ 16:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CommonfunctionProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
@@ -463,6 +330,150 @@ var CommonfunctionProvider = /** @class */ (function () {
 
 /***/ }),
 
+/***/ 16:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ApiserviceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__settings_settings__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var ApiserviceProvider = /** @class */ (function () {
+    function ApiserviceProvider(_http, settings) {
+        var _this = this;
+        this._http = _http;
+        this.settings = settings;
+        this.url = "http://api.contosonatura.com/api/";
+        this.dologin /* Member Login */ = function (objlogin) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url +
+                ("UserLogin/Login/?loginId=" + objlogin.user + "&password=" + objlogin.pass), {});
+        };
+        this.getReward /* Reward list */ = function (fkid) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url + ("Rewards/MemberRewards/?MemId=" + fkid), {});
+        };
+        this.getstates = function () {
+            return _this._http.post(_this.url + "Registration/StateMaster/", {});
+        };
+        this.getCitybyStID = function (stid) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url + ("Registration/CityMaster/?StateId=" + stid), {});
+        };
+        this.validatesponser = function (loginid) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url + ("Registration/ValidateUser/?loginID=" + loginid), {});
+        };
+        this.regmember = function (obj) {
+            _this.refreshSettings();
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set("Content-Type", "application/json; charset=utf-8");
+            var murl = _this.url + "Registration/MemberRegistration/";
+            console.log("Registration api method Hir " + obj);
+            return _this._http.post(murl, JSON.stringify(obj), { headers: headers });
+        };
+        this.validateepin = function (epin) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url + ("Registration/ValidateEpin/?ePinNo=" + epin), {});
+        };
+        this.getProduct = function () {
+            _this.refreshSettings();
+            return _this._http.post(_this.url + "ProductDetails/ProductMaster/", {});
+        };
+        this.getDownline = function (obj) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url +
+                ("Registration/AllDownLine/?fromDate=" + obj.fdate + "&toDate=" + obj.tdate + "&loginId=" + obj.loginId + "&status=" + obj.status + "&fK_ProductID=" + obj.Fkpid), {});
+        };
+        this.chanagepassword = function (obj) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url +
+                ("UserLogin/ChangePassword/?loginId=" + obj.LoginID + "&oldPassword=" + obj.oldPassword + "&newPassword=" + obj.newPassword + "&updatedBy=" + obj.fkid), {});
+        };
+        this.GuestRegistration = function (objguest) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url +
+                ("GuestRegistration/TempRegistration/?Name=" + objguest.name + "&mobile=" + objguest.password), {});
+        };
+        this.countPins = function (objpincount) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url +
+                ("ProductDetails/GetTotalEpin/?MemId=" + objpincount.fkid + "&ProductId=" + objpincount.pid), {});
+        };
+        this.validatepinid = function (loginid) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url + ("Registration/ValidateUser/?loginID=" + loginid), {});
+        };
+        this.transferpin = function (objmodelpin) {
+            _this.refreshSettings();
+            return _this._http.post(_this.url +
+                ("ProductDetails/TransferEpin/?MemId=" + objmodelpin.fkid + "&ToMemId=" + objmodelpin.tmid + "&ProductId=" + objmodelpin.pid + "&noOfePin=" + objmodelpin.pin), {});
+        };
+        this.pintransferreport = function (obj) {
+            _this.refreshSettings();
+            var furl = "ProductDetails/TransferEpinDetails/?LoginId=" + obj.loginID + "&toLoginId=" + obj.TOloginID + "&status=" + obj.status + "&fromDate=" + obj.fdate + "&toDate=" + obj.tdate + "&ProductId=" + obj.product;
+            console.log("report" + furl);
+            return _this._http.post(_this.url + furl, {});
+        };
+        this.epindetail = function (objdetail) {
+            _this.refreshSettings();
+            var furl = "ProductDetails/ProductDetails/?MemId=" + objdetail.fkid + "&ProductId=" + objdetail.pid + "&isRegistered=" + objdetail.pin;
+            console.log("epindetail" + furl);
+            return _this._http.post(_this.url + furl, {});
+        };
+        this.redeem /** Redeem skip rewards */ = function (obj) {
+            _this.refreshSettings();
+            var furl = "Rewards/UpdateRewardStatus/?MemId=" + obj.fkid + "&SetRewardId=1&action=" + obj.rewardstatus;
+            return _this._http.post(_this.url + furl, {});
+        };
+        this.epinrequest = function (objpinrequest) {
+            _this.refreshSettings();
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set("Content-Type", "application/json; charset=utf-8");
+            var furl = "ProductDetails/UserEpinRequest/";
+            return _this._http.post(_this.url + furl, JSON.stringify(objpinrequest), {
+                headers: headers
+            });
+        };
+        this.forgotpasswoord = function (obj) {
+            _this.refreshSettings();
+            var furl = "UserLogin/PasswordRecovery/?loginId=" + obj.mid + "&Mobile=" + obj.mobile;
+            return _this._http.post(_this.url + furl, {});
+        };
+        this.GuestproductRegistration = function (objguest) {
+            _this.refreshSettings();
+            var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set("Content-Type", "application/json; charset=utf-8");
+            var furl = "GuestProductRequest/ProductRequest/";
+            return _this._http.post(_this.url + furl, objguest, { headers: headers });
+        };
+        console.log("Hello ApiserviceProvider Provider");
+    }
+    ApiserviceProvider.prototype.refreshSettings = function () {
+        this.settingsconfig = this.settings.getallSettings();
+        console.log("********* Stting Log *******");
+        console.table(this.settingsconfig);
+    };
+    ApiserviceProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["B" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_0__settings_settings__["a" /* SettingsProvider */]])
+    ], ApiserviceProvider);
+    return ApiserviceProvider;
+}());
+
+//# sourceMappingURL=apiservice.js.map
+
+/***/ }),
+
 /***/ 166:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -508,10 +519,10 @@ var map = {
 		321
 	],
 	"../pages/pintransferreport/pintransferreport.module": [
-		322
+		323
 	],
 	"../pages/plan/plan.module": [
-		323
+		322
 	],
 	"../pages/productdetail/productdetail.module": [
 		462,
@@ -593,8 +604,8 @@ var BonuspointPageModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BonuspointPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard__ = __webpack_require__(20);
@@ -785,8 +796,8 @@ var ChangepasswordPageModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChangepasswordPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard__ = __webpack_require__(20);
@@ -812,8 +823,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var ChangepasswordPage = /** @class */ (function () {
-    function ChangepasswordPage(setting, navCtrl, navParams, api, comn) {
+    function ChangepasswordPage(alertCtrl, setting, navCtrl, navParams, api, comn) {
         var _this = this;
+        this.alertCtrl = alertCtrl;
         this.setting = setting;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
@@ -837,14 +849,14 @@ var ChangepasswordPage = /** @class */ (function () {
                     return true;
                 }
                 else {
-                    var alert_1 = _this.comn.createAlert("Alert !", "New Password && Confirm Password  Not Matched ! ");
-                    alert_1.present();
+                    var alert = _this.comn.createAlert("Alert !", "New Password && Confirm Password  Not Matched ! ");
+                    alert.present();
                     return false;
                 }
             }
             else {
-                var alert_2 = _this.comn.createAlert("Alert !", "Password Length Not Matched ! ");
-                alert_2.present();
+                var alert = _this.comn.createAlert("Alert !", "Password Length Not Matched ! ");
+                alert.present();
                 return false;
             }
         };
@@ -852,8 +864,12 @@ var ChangepasswordPage = /** @class */ (function () {
             if (_this.validatepassword()) {
                 console.table(_this.objmodel);
                 _this.api.chanagepassword(_this.objmodel).subscribe(function (res) {
-                    var alert = _this.comn.createAlert("Success !", "Password Change Successfully! ");
-                    alert.present();
+                    _this.showConfirmAlert();
+                    // let alert = this.comn.createAlert(
+                    //   "Success !",
+                    //   "Password Change Successfully! "
+                    // );
+                    // alert.present(); 
                 }, function (err) {
                     console.log(err);
                 });
@@ -861,6 +877,21 @@ var ChangepasswordPage = /** @class */ (function () {
         };
         this.cancle = function () {
             _this.navCtrl.pop();
+        };
+        this.showConfirmAlert = function () {
+            var alert = _this.alertCtrl.create({
+                title: 'Success !',
+                message: 'Password Change Successfully!',
+                buttons: [
+                    {
+                        text: 'OK',
+                        handler: function () {
+                            _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard__["a" /* DashboardPage */]);
+                        }
+                    }
+                ]
+            });
+            alert.present();
         };
     }
     ChangepasswordPage.prototype.ionViewDidLoad = function () {
@@ -879,13 +910,10 @@ var ChangepasswordPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({
             selector: "page-changepassword",template:/*ion-inline-start:"F:\Ankit_New\Personal\mlm\src\pages\changepassword\changepassword.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <ion-icon name="menu" menuToggle class=\'menu-icon\'></ion-icon>\n\n      Change Password\n\n      <div class="logo"><img src="../../assets/images/contoso_natura_logo.png"></div>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="has-footer ha-header">\n\n  <div class="login-page">\n\n    <div class="login-form">\n\n      <div class="input-wrap"> <i class="material-icons">lock_open</i>\n\n        <ion-item>\n\n          <ion-label color="" floating> Old Password</ion-label>\n\n          <ion-input [(ngModel)]="objmodel.oldPassword" type="password" ngDefaultControl></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div class="input-wrap"> <i class="material-icons">lock_open</i>\n\n        <ion-item>\n\n          <ion-label color="" floating> New Password</ion-label>\n\n          <ion-input [(ngModel)]="objmodel.newPassword" type="password" ngDefaultControl></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div class="input-wrap"> <i class="material-icons">lock_open</i>\n\n        <ion-item>\n\n          <ion-label color="" floating> Confirm\n\n            Password</ion-label>\n\n          <ion-input [(ngModel)]="objmodel.newPassword2" ngDefaultControl type="password"></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <ion-row>\n\n        <ion-col col-6>\n\n          <button ion-button (click)="changePassword()">Submit</button>\n\n        </ion-col>\n\n        <ion-col col-6>\n\n          <button ion-button (click)="cancle()">Cancel</button>\n\n        </ion-col>\n\n      </ion-row>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-buttons>\n\n      <button ion-button (click)="GoToDashboard()">Contoso उजाला</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"F:\Ankit_New\Personal\mlm\src\pages\changepassword\changepassword.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__["a" /* SettingsProvider */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__["a" /* SettingsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__["a" /* SettingsProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */]) === "function" && _f || Object])
     ], ChangepasswordPage);
     return ChangepasswordPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=changepassword.js.map
@@ -1062,9 +1090,9 @@ var DownlinePageModule = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DownlinePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_commonfunction_commonfunction__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_commonfunction_commonfunction__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard__ = __webpack_require__(20);
@@ -1277,8 +1305,8 @@ var ForgotpasswordPageModule = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ForgotpasswordPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_commonfunction_commonfunction__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_commonfunction_commonfunction__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1448,8 +1476,8 @@ var GustregistrationPageModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GustregistrationPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__guestdashboard_guestdashboard__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_settings_settings__ = __webpack_require__(13);
@@ -1586,8 +1614,8 @@ var LoginPageModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard__ = __webpack_require__(20);
@@ -1648,15 +1676,18 @@ var LoginPage = /** @class */ (function () {
                         _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_5__dashboard_dashboard__["a" /* DashboardPage */]);
                     }
                     else {
-                        var alert_1 = _this.comn.createAlert("Success!", "User is blocked due to company policy ! please contact to your head vision.");
-                        alert_1.present();
+                        var alert = _this.comn.createAlert("Success!", "User is blocked due to company policy ! please contact to your head vision.");
+                        alert.present();
                     }
                 }
                 else {
                     loading.dismiss();
-                    var alert_2 = _this.comn.createAlert("Alert!", "MemberID and Password not valid. please check and try again.");
-                    alert_2.present();
+                    var alert = _this.comn.createAlert("Alert!", "MemberID and Password not valid. please check and try again.");
+                    alert.present();
                 }
+            }, function (error) {
+                loading.dismiss();
+                console.error(error);
             });
         };
         this.GoToRegistration = function () {
@@ -1690,16 +1721,12 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({
-            selector: "page-login",template:/*ion-inline-start:"F:\Ankit_New\Personal\mlm\src\pages\login\login.html"*/'<ion-content class="has-footer ha-header">\n\n  <div class="login-page">\n\n    <div class="login-bg">\n\n      <div class="logo"><img src="../../assets/images/logo.png"></div>\n\n    </div>\n\n    <div class="login-form">\n\n      <div class="input-wrap"> <i class="material-icons">person</i>\n\n        <ion-item>\n\n          <ion-label color="" floating>Member ID</ion-label>\n\n          <ion-input [(ngModel)]="loginform.user"></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div class="input-wrap"> <i class="material-icons">lock_open</i>\n\n        <ion-item>\n\n          <ion-label color="" floating> Password</ion-label>\n\n          <ion-input type="password" [(ngModel)]="loginform.pass"></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div class="onoffswitch-wrap">\n\n        <ion-row>\n\n          <ion-col>\n\n            <div class="onoffswitch">\n\n              <input type="checkbox" [(ngModel)]="loginform.isRemember" name="remember" class="onoffswitch-checkbox"\n\n                id="remember">\n\n              <label class="onoffswitch-label" for="remember"> <span class="onoffswitch-inner"></span> <span\n\n                  class="onoffswitch-switch"></span></label>\n\n            </div>\n\n            <ion-label>Remember Me</ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n      <button ion-button (click)="GoToDashboard()">Login</button>\n\n      <button ion-button (click)="GoToRegistration()">Member Registration</button>\n\n      <p (click)="GoToChangePassword()">Forgot Password?</p>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-buttons>\n\n      <button ion-button>Contoso उजाला</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"F:\Ankit_New\Personal\mlm\src\pages\login\login.html"*/
+            selector: "page-login",template:/*ion-inline-start:"F:\Ankit_New\Personal\mlm\src\pages\login\login.html"*/'<ion-content class="has-footer ha-header">\n\n  <div class="login-page">\n\n    <div class="login-bg">\n\n      <div class="logo"><img src="../../assets/images/logo.png"></div>\n\n    </div>\n\n    <div class="login-form">\n\n      <div class="input-wrap"> <i class="material-icons">person</i>\n\n        <ion-item>\n\n          <ion-label color="" floating>Member ID</ion-label>\n\n          <ion-input [(ngModel)]="loginform.user"></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div class="input-wrap"> <i class="material-icons">lock_open</i>\n\n        <ion-item>\n\n          <ion-label color="" floating> Password</ion-label>\n\n          <ion-input type="password" [(ngModel)]="loginform.pass"></ion-input>\n\n        </ion-item>\n\n      </div>\n\n      <div class="onoffswitch-wrap">\n\n        <ion-row>\n\n          <ion-col>\n\n            <div class="onoffswitch">\n\n              <input type="checkbox" [(ngModel)]="loginform.isRemember" name="remember" class="onoffswitch-checkbox"\n\n                id="remember">\n\n              <label class="onoffswitch-label" for="remember"> <span class="onoffswitch-inner"></span> <span\n\n                  class="onoffswitch-switch"></span></label>\n\n            </div>\n\n            <ion-label>Remember Me</ion-label>\n\n          </ion-col>\n\n        </ion-row>\n\n      </div>\n\n      <button ion-button (click)="GoToDashboard()">Login</button>\n\n      <button ion-button (click)="GoToRegistration()">For Guest</button>\n\n      <p (click)="GoToChangePassword()">Forgot Password?</p>\n\n    </div>\n\n  </div>\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-buttons>\n\n      <button ion-button>Contoso उजाला</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"F:\Ankit_New\Personal\mlm\src\pages\login\login.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__["a" /* SettingsProvider */],
-            __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* Events */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__["a" /* SettingsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__["a" /* SettingsProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */]) === "function" && _f || Object])
     ], LoginPage);
     return LoginPage;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=login.js.map
@@ -1712,8 +1739,8 @@ var LoginPage = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ViewpackagePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_apiservice_apiservice__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_commonfunction_commonfunction__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_apiservice_apiservice__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_commonfunction_commonfunction__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -1909,6 +1936,8 @@ var ViewpackagePage = /** @class */ (function () {
         this.guestProductRequest = function () {
             if (_this.validate()) {
                 if (_this.validatepayment()) {
+                    var loading_1 = _this.comn.presentLoadingDefault();
+                    loading_1.present();
                     var adet = {
                         productId: _this.MemberInfo.productId,
                         noOfPins: _this.MemberInfo.noOfPins,
@@ -1940,6 +1969,7 @@ var ViewpackagePage = /** @class */ (function () {
                     console.log(data);
                     console.table(data);
                     _this.api.GuestproductRegistration(JSON.stringify(data)).subscribe(function (res) {
+                        loading_1.dismiss();
                         console.log(res);
                         if (res[0].Msg == "1") {
                             var alert_9 = _this.comn.createAlert("Success !", "Product request was successfully. your request no. for  " + res[0].Product + "  is " + res[0].EpinRequestNo + " .");
@@ -1951,6 +1981,7 @@ var ViewpackagePage = /** @class */ (function () {
                             alert_10.present();
                         }
                     }, function (err) {
+                        loading_1.dismiss();
                         console.log(err);
                         var alert = _this.comn.createAlert("Error !", "" + err.error.Message);
                         alert.present();
@@ -1958,24 +1989,13 @@ var ViewpackagePage = /** @class */ (function () {
                 }
             }
         };
-        var values = this.navParams.get("plan") == undefined
-            ? "C"
-            : this.navParams.get("plan");
+        var values = this.navParams.get("plan") == undefined ? [] : this.navParams.get("plan");
         console.log(values);
-        if (values == "A") {
-            this.title = "Request For Plan A 8500";
-            this.MemberInfo.productId.push("1");
+        if (values !== undefined) {
+            this.title = values.ProductName;
+            this.MemberInfo.productId.push(values.PK_ProductId);
             this.MemberInfo.noOfPins.push("1");
-            this.objepin.pinamount = 8500;
-        }
-        else if (values == "B") {
-            this.objepin.pinamount = 4500;
-            this.MemberInfo.productId.push("2");
-            this.MemberInfo.noOfPins.push("2");
-            this.title = "Request For Plan B 4500";
-        }
-        else {
-            this.navCtrl.pop();
+            this.objepin.pinamount = values.ProductPrice;
         }
     }
     ViewpackagePage.prototype.ionViewDidLoad = function () {
@@ -2048,8 +2068,8 @@ var PindetailsPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2064,8 +2084,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var RegisterPage = /** @class */ (function () {
-    function RegisterPage(comn, api, navCtrl, navParams) {
+    function RegisterPage(alertCtrl, comn, api, navCtrl, navParams) {
         var _this = this;
+        this.alertCtrl = alertCtrl;
         this.comn = comn;
         this.api = api;
         this.navCtrl = navCtrl;
@@ -2132,16 +2153,22 @@ var RegisterPage = /** @class */ (function () {
             };
             var param = "SponsorId=" + user.SponsorId + "&\n    StateId=" + user.StateId + "&\n    displayName=" + user.displayname + "&\n     ePinNo=" + user.ePinNo + "&\n    memberAccNo=" + user.memberAccNo + "&\n    memberBankName=" + user.memberBankName + "&\n    memberBranch=" + user.memberBranch + "&\n    bankAccName=" + user.bankAccName + "&\n    bankHolderName=" + user.bankHolderName + "&\n    iFSCCode=" + user.iFSCCode + "&\n    aadharNo=" + user.aadharNo + "&\n    address=" + user.address + "&\n    city=" + user.city + "&\n    mobile=" + user.mobile + "&\n    pinCode=" + user.pinCode + "&\n    createdBy=" + user.cerateby;
             console.log(param);
-            _this.api.regmember(param).subscribe(function (res) {
+            _this.api.regmember(user).subscribe(function (res) {
                 console.log(res);
                 loading.dismiss();
                 if (res[0].MSG == "0") {
-                    var alert_1 = _this.comn.createAlert("Success !", "Member registration was successfully.please save your loginID is " + res[0].LoginId + " and password is " + res[0].Password + " .");
-                    alert_1.present();
+                    _this.showConfirmAlert(res);
+                    // let alert = this.comn.createAlert(
+                    //   "Success !",
+                    //   `Member registration was successfully.please save your loginID is ${
+                    //     res[0].LoginId
+                    //   } and password is ${res[0].Password} .`
+                    // );
+                    // alert.present();
                 }
                 else {
-                    var alert_2 = _this.comn.createAlert("Alert!", res[0].Result);
-                    alert_2.present();
+                    var alert = _this.comn.createAlert("Alert!", res[0].Result);
+                    alert.present();
                 }
             }, function (err) {
                 loading.dismiss();
@@ -2171,8 +2198,8 @@ var RegisterPage = /** @class */ (function () {
                     _this.sponser.type = res[0].TemPermanent;
                 }
                 else {
-                    var alert_3 = _this.comn.createAlert("Alert!", "Please enter valid  Sponsor code");
-                    alert_3.present();
+                    var alert = _this.comn.createAlert("Alert!", "Please enter valid  Sponsor code");
+                    alert.present();
                 }
             }, function (error) {
                 loading.dismiss();
@@ -2185,12 +2212,12 @@ var RegisterPage = /** @class */ (function () {
             _this.api.validateepin(_this.MemberInfo.epin).subscribe(function (res) {
                 loading.dismiss();
                 if (res[0].Msg == "1") {
-                    var alert_4 = _this.comn.createAlert("Success !", res[0].Result);
-                    alert_4.present();
+                    var alert = _this.comn.createAlert("Success !", res[0].Result);
+                    alert.present();
                 }
                 else {
-                    var alert_5 = _this.comn.createAlert("Alert !", res[0].Result);
-                    alert_5.present();
+                    var alert = _this.comn.createAlert("Alert !", res[0].Result);
+                    alert.present();
                 }
             }, function (err) {
                 loading.dismiss();
@@ -2200,14 +2227,29 @@ var RegisterPage = /** @class */ (function () {
         this.reset = function () {
             _this.navCtrl.pop();
         };
+        this.showConfirmAlert = function (objres) {
+            var alert = _this.alertCtrl.create({
+                title: 'Success !',
+                message: "Member registration was successfully.please save your loginID is " + objres[0].LoginId + " and password is " + objres[0].Password + " .",
+                buttons: [
+                    {
+                        text: 'OK',
+                        handler: function () {
+                            _this.navCtrl.pop();
+                        }
+                    }
+                ]
+            });
+            alert.present();
+        };
         console.log(this.navParams.get("epin"));
         this.MemberInfo.epin = this.navParams.get("epin");
         if (this.MemberInfo.epin !== "") {
             this.validateepin();
         }
         else {
-            var alert_6 = this.comn.createAlert("Alert!", "Activation Code not found.");
-            alert_6.present();
+            var alert = this.comn.createAlert("Alert!", "Activation Code not found.");
+            alert.present();
         }
         this.getstaes();
     }
@@ -2218,12 +2260,10 @@ var RegisterPage = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: "page-register",template:/*ion-inline-start:"F:\Ankit_New\Personal\mlm\src\pages\register\register.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <ion-icon name="menu" menuToggle class=\'menu-icon\'></ion-icon>\n\n      Member Registration\n\n      <div class="logo"><img src="../../assets/images/contoso_natura_logo.png"></div>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-card>\n\n    <h2>Sponsor</h2>\n\n    <ion-item>\n\n      <ion-label>Activation Code:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.epin" readonly (change)=\'validateepin()\' placeholder="Activation Code">\n\n      </ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Sponsor Code:</ion-label>\n\n      <ion-input [(ngModel)]=\'sponser.code\' (change)=\'validatesponser()\' placeholder="Sponsor Code"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Sponsor Name:</ion-label>\n\n      <ion-input [readonly]=\'true\' [(ngModel)]=\'sponser.name\' placeholder="Sponsor Name"></ion-input>\n\n    </ion-item>\n\n  </ion-card>\n\n  <ion-card>\n\n    <h2>Personal Details</h2>\n\n    <ion-item>\n\n      <ion-label>Full Name:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.name" placeholder="Enter your name"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Mobile:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.mobile" placeholder="Enter your Mobile"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>State:</ion-label>\n\n      <ion-select interface="popover" [(ngModel)]="MemberInfo.stid" placeholder="Select State">\n\n        <ion-option *ngFor="let st of states" (ionSelect)="getcity(st)" [value]="st.PK_StateId">{{st.StateName}}\n\n        </ion-option>\n\n        <!-- <ion-option value="MP">MP</ion-option> -->\n\n      </ion-select>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>District:</ion-label>\n\n      <ion-select interface="popover" [(ngModel)]="MemberInfo.ctid" placeholder="Select Distract">\n\n        <ion-option *ngFor="let ct of city" [value]="ct.PK_CityId">{{ct.CityName}}</ion-option>\n\n        <!-- <ion-option value="Kanpur">Kanpur</ion-option> -->\n\n      </ion-select>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>City:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.cityname" placeholder="Enter your city"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Address:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.address" placeholder="Enter your address"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Pin:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.pincode" placeholder="Enter your PIN"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Aadhar No.:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.adhar" placeholder="Enter your Aadhar No."></ion-input>\n\n    </ion-item>\n\n  </ion-card>\n\n  <ion-card>\n\n    <h2>Bank Details</h2>\n\n    <ion-item>\n\n      <ion-label>Account No.:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.ac" placeholder="Enter your account"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Bank Name:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.bank" placeholder="Enter your bank name"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>Branch Name:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.branch" placeholder="Enter your branch name"></ion-input>\n\n    </ion-item>\n\n    <ion-item>\n\n      <ion-label>IFSC Code:</ion-label>\n\n      <ion-input [(ngModel)]="MemberInfo.ifsc" placeholder="Enter your IFSC Code"></ion-input>\n\n    </ion-item>\n\n  </ion-card>\n\n  <ion-row>\n\n    <ion-col col-6>\n\n      <button ion-button (click)=\'getregister()\'>Register</button>\n\n    </ion-col>\n\n    <ion-col col-6>\n\n      <button ion-button (click)="reset()">Cancle</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-buttons>\n\n      <button ion-button>Contoso Ujala</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"F:\Ankit_New\Personal\mlm\src\pages\register\register.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _e || Object])
     ], RegisterPage);
     return RegisterPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=register.js.map
@@ -2311,44 +2351,6 @@ var PintransferPageModule = /** @class */ (function () {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PintransferreportPageModule", function() { return PintransferreportPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pintransferreport__ = __webpack_require__(54);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-var PintransferreportPageModule = /** @class */ (function () {
-    function PintransferreportPageModule() {
-    }
-    PintransferreportPageModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
-            declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__pintransferreport__["a" /* PintransferreportPage */],
-            ],
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__pintransferreport__["a" /* PintransferreportPage */]),
-            ],
-        })
-    ], PintransferreportPageModule);
-    return PintransferreportPageModule;
-}());
-
-//# sourceMappingURL=pintransferreport.module.js.map
-
-/***/ }),
-
-/***/ 323:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PlanPageModule", function() { return PlanPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
@@ -2379,6 +2381,44 @@ var PlanPageModule = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=plan.module.js.map
+
+/***/ }),
+
+/***/ 323:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PintransferreportPageModule", function() { return PintransferreportPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pintransferreport__ = __webpack_require__(54);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+
+var PintransferreportPageModule = /** @class */ (function () {
+    function PintransferreportPageModule() {
+    }
+    PintransferreportPageModule = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["J" /* NgModule */])({
+            declarations: [
+                __WEBPACK_IMPORTED_MODULE_2__pintransferreport__["a" /* PintransferreportPage */],
+            ],
+            imports: [
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__pintransferreport__["a" /* PintransferreportPage */]),
+            ],
+        })
+    ], PintransferreportPageModule);
+    return PintransferreportPageModule;
+}());
+
+//# sourceMappingURL=pintransferreport.module.js.map
 
 /***/ }),
 
@@ -2714,13 +2754,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_guestdashboard_guestdashboard_module__ = __webpack_require__(312);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_gustregistration_gustregistration_module__ = __webpack_require__(313);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_pinrequest_pinrequest_module__ = __webpack_require__(320);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_pintransferreport_pintransferreport_module__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_pintransferreport_pintransferreport_module__ = __webpack_require__(323);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_pintransfer_pintransfer_module__ = __webpack_require__(321);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_pindetails_pindetails_module__ = __webpack_require__(318);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_profile_profile_module__ = __webpack_require__(324);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_downline_downline_module__ = __webpack_require__(304);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_commonfunction_commonfunction__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__providers_commonfunction_commonfunction__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__angular_platform_browser__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_ionic_angular__ = __webpack_require__(4);
@@ -2735,11 +2775,11 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_contactus_contactus_module__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_uphaar_uphaar_module__ = __webpack_require__(329);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_dashboard_dashboard_module__ = __webpack_require__(303);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_plan_plan_module__ = __webpack_require__(323);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pages_plan_plan_module__ = __webpack_require__(322);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_rules_rules_module__ = __webpack_require__(327);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pages_login_login_module__ = __webpack_require__(315);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pages_register_register_module__ = __webpack_require__(326);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_storage__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__angular_common_http__ = __webpack_require__(298);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2838,8 +2878,8 @@ var AppModule = /** @class */ (function () {
                         { loadChildren: '../pages/pindetails/pindetails.module#PindetailsPageModule', name: 'PindetailsPage', segment: 'pindetails', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pinrequest/pinrequest.module#PinrequestPageModule', name: 'PinrequestPage', segment: 'pinrequest', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/pintransfer/pintransfer.module#PintransferPageModule', name: 'PintransferPage', segment: 'pintransfer', priority: 'low', defaultHistory: [] },
-                        { loadChildren: '../pages/pintransferreport/pintransferreport.module#PintransferreportPageModule', name: 'PintransferreportPage', segment: 'pintransferreport', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/plan/plan.module#PlanPageModule', name: 'PlanPage', segment: 'plan', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/pintransferreport/pintransferreport.module#PintransferreportPageModule', name: 'PintransferreportPage', segment: 'pintransferreport', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/productdetail/productdetail.module#ProductdetailPageModule', name: 'ProductdetailPage', segment: 'productdetail', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/profile/profile.module#ProfilePageModule', name: 'ProfilePage', segment: 'profile', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/register/register.module#RegisterPageModule', name: 'RegisterPage', segment: 'register', priority: 'low', defaultHistory: [] },
@@ -3363,8 +3403,8 @@ var HomePage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PindetailsPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_apiservice_apiservice__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_apiservice_apiservice__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_commonfunction_commonfunction__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_settings_settings__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__plan_plan__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pintransferreport_pintransferreport__ = __webpack_require__(54);
@@ -3484,11 +3524,12 @@ var PindetailsPage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PlanPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__viewpackage_viewpackage__ = __webpack_require__(317);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_commonfunction_commonfunction__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_settings_settings__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__viewpackage_viewpackage__ = __webpack_require__(317);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_apiservice_apiservice__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ionic_angular__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3503,6 +3544,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the PlanPage page.
  *
@@ -3510,35 +3552,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var PlanPage = /** @class */ (function () {
-    function PlanPage(events, setting, api, navCtrl, navParams) {
+    function PlanPage(events, setting, api, navCtrl, comn, navParams) {
         var _this = this;
         this.events = events;
         this.setting = setting;
         this.api = api;
         this.navCtrl = navCtrl;
+        this.comn = comn;
         this.navParams = navParams;
         this.product = [];
         this.isloginType = "";
         this.fkid = "";
-        this.requestplanA = function () {
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__viewpackage_viewpackage__["a" /* ViewpackagePage */], {
-                plan: "A"
+        this.requestplanA = function (item) {
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__viewpackage_viewpackage__["a" /* ViewpackagePage */], {
+                plan: item
             });
         };
         this.requestplanB = function () {
-            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__viewpackage_viewpackage__["a" /* ViewpackagePage */], {
+            _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__viewpackage_viewpackage__["a" /* ViewpackagePage */], {
                 plan: "B"
             });
         };
         this.getproduct = function () {
+            var loading = _this.comn.presentLoadingDefault();
+            loading.present();
             _this.api.getProduct().subscribe(function (res) {
+                loading.dismiss();
                 _this.product = res;
                 console.table(_this.product);
             }, function (err) {
+                loading.dismiss();
                 console.log(err);
             });
         };
-        //this.getproduct();
+        this.getproduct();
         this.events.subscribe("isloginType", function (islogin) {
             console.log(islogin);
             _this.isloginType = islogin;
@@ -3560,14 +3607,15 @@ var PlanPage = /** @class */ (function () {
         console.log("ionViewDidLoad PlanPage");
     };
     PlanPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({
-            selector: "page-plan",template:/*ion-inline-start:"F:\Ankit_New\Personal\mlm\src\pages\plan\plan.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <ion-icon name="menu" menuToggle class=\'menu-icon\'></ion-icon>\n\n      योजना (Plan)\n\n      <div class="logo"><img src="../../assets/images/contoso_natura_logo.png"></div>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-card>\n\n    <ol>\n\n      <li>Contoso Ujala सदस्यता दो तरह के किसी एक उत्पाद को खरीदकर ग्रहण की जा सकती है।</li>\n\n      <li>उपहार योजना सभी तरह के सदस्यों के लिए सामान है, चाहे वो कोई भी उपरोक्त उत्पाद को खरीद कर सदस्य बने हो।</li>\n\n      <li>प्रति नए सदस्य जोड़ने पर 50 बोनस अंक मिलेंगे।</li>\n\n      <li>उपहार योजना बोनस अंकों पर आधारित हैं। जितने बोनस अंक होंगे उसी के आधार पर उपहार दिया जायेगा।</li>\n\n    </ol>\n\n  </ion-card>\n\n  <button *ngIf="isloginType===\'main\'" ion-button>PLAN A</button>\n\n  <button *ngIf="isloginType!==\'main\'" (click)="requestplanA()" ion-button>Click to request PLAN A</button>\n\n  <h2>Solar Magic Home Light System</h2>\n\n  <ion-card>\n\n    <button ion-button>सदस्यता शुल्क- 8500/-</button>\n\n    <ol>\n\n      <li>Solar Battery - 45 AH (एक साल गारंटी)</li>\n\n      <li>Solar Panel 65 Watt - 1</li>\n\n      <li>Solar Magic Box with Mobile Charger - 1</li>\n\n      <li>Solar Bulb - 6 Watt (3 Pcs.)</li>\n\n      <li>Connecting Wire and Cables.</li>\n\n      <li>Solar DC Fan - 24 Watt - 1</li>\n\n      <li>Free Installation</li>\n\n      <li>Transportation of Product paid by member</li>\n\n    </ol>\n\n  </ion-card>\n\n  <button *ngIf="isloginType==\'main\'" ion-button>PLAN B</button>\n\n  <button *ngIf="isloginType ==\'guest\'" (click)="requestplanB()" ion-button>Click to request PLAN B</button>\n\n  <h2>Solar Mini Home Light System</h2>\n\n  <ion-card>\n\n    <button ion-button>सदस्यता शुल्क- 4500/-</button>\n\n    <ol>\n\n      <li>Solar Battery - 20 AH (एक साल गारंटी)</li>\n\n      <li>Solar Panel 25 Watt – 1</li>\n\n      <li>Solar Magic Box with Mobile Charger – 1</li>\n\n      <li>Solar Bulb - 3 Watt (3 Pcs.)</li>\n\n      <li>Connecting wire and cables.</li>\n\n      <li>Free Installation</li>\n\n      <li>Transportation of product paid by member</li>\n\n    </ol>\n\n  </ion-card>\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-buttons>\n\n      <button ion-button>Contoso उजाला</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"F:\Ankit_New\Personal\mlm\src\pages\plan\plan.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_4__angular_core__["n" /* Component */])({
+            selector: "page-plan",template:/*ion-inline-start:"F:\Ankit_New\Personal\mlm\src\pages\plan\plan.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <ion-icon name="menu" menuToggle class=\'menu-icon\'></ion-icon>\n\n      योजना (Plan)\n\n      <div class="logo"><img src="../../assets/images/contoso_natura_logo.png"></div>\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-card>\n\n    <ol>\n\n      <li>Contoso Ujala सदस्यता दो तरह के किसी एक उत्पाद को खरीदकर ग्रहण की जा सकती है।</li>\n\n      <li>उपहार योजना सभी तरह के सदस्यों के लिए सामान है, चाहे वो कोई भी उपरोक्त उत्पाद को खरीद कर सदस्य बने हो।</li>\n\n      <li>प्रति नए सदस्य जोड़ने पर 50 बोनस अंक मिलेंगे।</li>\n\n      <li>उपहार योजना बोनस अंकों पर आधारित हैं। जितने बोनस अंक होंगे उसी के आधार पर उपहार दिया जायेगा।</li>\n\n    </ol>\n\n  </ion-card>\n\n  <div *ngFor="let item of product">\n\n    <button style="white-space:normal !important; word-wrap: break-word; word-break: normal;"\n\n      *ngIf="isloginType===\'main\'" ion-button>{{item.ProductName}}</button>\n\n    <button style="white-space:normal !important; word-wrap: break-word; word-break: normal;"\n\n      *ngIf="isloginType!==\'main\'" (click)="requestplanA(item)" ion-button>Click here to request <br />\n\n      {{item.ProductName}}</button>\n\n    <h2>{{item.Description}}</h2>\n\n    <ion-card>\n\n      <button ion-button>सदस्यता शुल्क- {{item.ProductPrice}}/-</button>\n\n\n\n    </ion-card>\n\n  </div>\n\n\n\n  <!-- <button *ngIf="isloginType==\'main\'" ion-button>PLAN B</button>\n\n  <button *ngIf="isloginType ==\'guest\'" (click)="requestplanB()" ion-button>Click to request PLAN B</button>\n\n  <h2>Solar Mini Home Light System</h2> -->\n\n  <!-- <ion-card>\n\n    <button ion-button>सदस्यता शुल्क- 4500/-</button>\n\n    <ol>\n\n      <li>Solar Battery - 20 AH (एक साल गारंटी)</li>\n\n      <li>Solar Panel 25 Watt – 1</li>\n\n      <li>Solar Magic Box with Mobile Charger – 1</li>\n\n      <li>Solar Bulb - 3 Watt (3 Pcs.)</li>\n\n      <li>Connecting wire and cables.</li>\n\n      <li>Free Installation</li>\n\n      <li>Transportation of product paid by member</li>\n\n    </ol>\n\n  </ion-card> -->\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-buttons>\n\n      <button ion-button>Contoso उजाला</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"F:\Ankit_New\Personal\mlm\src\pages\plan\plan.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_4_ionic_angular__["b" /* Events */],
-            __WEBPACK_IMPORTED_MODULE_0__providers_settings_settings__["a" /* SettingsProvider */],
-            __WEBPACK_IMPORTED_MODULE_2__providers_apiservice_apiservice__["a" /* ApiserviceProvider */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["i" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_5_ionic_angular__["b" /* Events */],
+            __WEBPACK_IMPORTED_MODULE_1__providers_settings_settings__["a" /* SettingsProvider */],
+            __WEBPACK_IMPORTED_MODULE_3__providers_apiservice_apiservice__["a" /* ApiserviceProvider */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["h" /* NavController */],
+            __WEBPACK_IMPORTED_MODULE_0__providers_commonfunction_commonfunction__["a" /* CommonfunctionProvider */],
+            __WEBPACK_IMPORTED_MODULE_5_ionic_angular__["i" /* NavParams */]])
     ], PlanPage);
     return PlanPage;
 }());
@@ -3584,9 +3632,9 @@ var PlanPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pintransfer_pintransfer__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pinrequest_pinrequest__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pindetails_pindetails__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_ionic_angular__ = __webpack_require__(4);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3696,8 +3744,8 @@ var PintransferreportPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pinrequest_pinrequest__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pintransferreport_pintransferreport__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pindetails_pindetails__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_commonfunction_commonfunction__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_apiservice_apiservice__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_settings_settings__ = __webpack_require__(13);
@@ -3876,8 +3924,8 @@ var PintransferPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ionic_angular__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_settings_settings__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_commonfunction_commonfunction__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_apiservice_apiservice__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_commonfunction_commonfunction__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_apiservice_apiservice__ = __webpack_require__(16);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3904,6 +3952,8 @@ var PinrequestPage = /** @class */ (function () {
         this.comn = comn;
         this.setting = setting;
         /** Product request Model Create Begin*/
+        this.product = [];
+        this.total = 0;
         this.adet = {
             productId: [],
             noOfPins: [],
@@ -3947,28 +3997,37 @@ var PinrequestPage = /** @class */ (function () {
             _this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_1__pintransferreport_pintransferreport__["a" /* PintransferreportPage */]);
         };
         this.pinchange = function (pin) {
-            if (pin == "A") {
-                var pins = _this.objepin.productA.pin.toString() == ""
-                    ? "0"
-                    : _this.objepin.productA.pin;
-                _this.objepin.productA.total = Number(pins) * _this.objepin.productA.price;
-                _this.objepin.total =
-                    _this.objepin.productB.total + _this.objepin.productA.total;
-                if (pins == "0") {
-                    _this.objepin.productA.pin = 0;
-                }
-            }
-            else if (pin == "B") {
-                var pinss = _this.objepin.productB.pin.toString() == ""
-                    ? "0"
-                    : _this.objepin.productB.pin;
-                _this.objepin.productB.total = Number(pinss) * _this.objepin.productB.price;
-                _this.objepin.total =
-                    _this.objepin.productB.total + _this.objepin.productA.total;
-                if (pinss == "0") {
-                    _this.objepin.productB.pin = 0;
-                }
-            }
+            _this.product[pin].pin =
+                _this.product[pin].pin == "" ? 0 : _this.product[pin].pin;
+            _this.product[pin].total =
+                Number(_this.product[pin].pin) * Number(_this.product[pin].ProductPrice);
+            _this.total = 0;
+            _this.product.forEach(function (element) {
+                _this.total += Number(element.total);
+            });
+            // if (pin == "A") {
+            //   let pins =
+            //     this.objepin.productA.pin.toString() == ""
+            //       ? "0"
+            //       : this.objepin.productA.pin;
+            //   this.objepin.productA.total = Number(pins) * this.objepin.productA.price;
+            //   this.objepin.total =
+            //     this.objepin.productB.total + this.objepin.productA.total;
+            //   if (pins == "0") {
+            //     this.objepin.productA.pin = 0;
+            //   }
+            // } else if (pin == "B") {
+            //   let pinss =
+            //     this.objepin.productB.pin.toString() == ""
+            //       ? "0"
+            //       : this.objepin.productB.pin;
+            //   this.objepin.productB.total = Number(pinss) * this.objepin.productB.price;
+            //   this.objepin.total =
+            //     this.objepin.productB.total + this.objepin.productA.total;
+            //   if (pinss == "0") {
+            //     this.objepin.productB.pin = 0;
+            //   }
+            // }
         };
         this.getmode = function () {
             if (_this.objepin.pmode == "Cash") {
@@ -3988,20 +4047,28 @@ var PinrequestPage = /** @class */ (function () {
             _this.objepin.productB.pin = 0;
             _this.objepin.productA.total = 0;
             _this.objepin.productB.total = 0;
+            _this.total = 0;
+            _this.product.forEach(function (y) {
+                y.pin = 0;
+                y.total = 0;
+            });
             _this.objepin.pinamount = 0;
             _this.objepin.pmode = "Cash";
             _this.isCash = true;
         };
         this.epinrequest = function () {
-            if (_this.objepin.productA.pin.toString() !== "" ||
-                _this.objepin.productA.pin.toString() !== "0") {
-                _this.adet.productId.push("1");
-                _this.adet.noOfPins.push(_this.objepin.productA.pin);
+            var piinarr = _this.product.filter(function (x) { return x.pin == 0; });
+            if (piinarr.length == _this.product.length) {
+                console.log(piinarr);
+                var alert_1 = _this.comn.createAlert("Alert!", "Please Enter Number Of Pins.");
+                alert_1.present();
+                return;
             }
-            if (_this.objepin.productB.pin.toString() !== "" ||
-                _this.objepin.productB.pin.toString() !== "0") {
-                _this.adet.productId.push("2");
-                _this.adet.noOfPins.push(_this.objepin.productB.pin);
+            else {
+                _this.product.forEach(function (x) {
+                    _this.adet.productId.push(x.PK_ProductId);
+                    _this.adet.noOfPins.push(x.pin);
+                });
             }
             if (_this.adet.noOfPins.length > 0) {
                 if (_this.objepin.pmode == "Cash") {
@@ -4018,20 +4085,20 @@ var PinrequestPage = /** @class */ (function () {
                                 _this.adet.bankName = _this.objepin.bank;
                             }
                             else {
-                                var alert_1 = _this.comn.createAlert("Alert!", "Plese enter Ban k Name.");
-                                alert_1.present();
+                                var alert_2 = _this.comn.createAlert("Alert!", "Plese enter Ban k Name.");
+                                alert_2.present();
                                 return;
                             }
                         }
                         else {
-                            var alert_2 = _this.comn.createAlert("Alert!", "Plese enter Cheque/DD Date/Transaction Date.");
-                            alert_2.present();
+                            var alert_3 = _this.comn.createAlert("Alert!", "Plese enter Cheque/DD Date/Transaction Date.");
+                            alert_3.present();
                             return;
                         }
                     }
                     else {
-                        var alert_3 = _this.comn.createAlert("Alert!", "Plese enter Cheque/DD No/Bank Transaction No.");
-                        alert_3.present();
+                        var alert_4 = _this.comn.createAlert("Alert!", "Plese enter Cheque/DD No/Bank Transaction No.");
+                        alert_4.present();
                         return;
                     }
                 }
@@ -4048,12 +4115,12 @@ var PinrequestPage = /** @class */ (function () {
                     loading_1.dismiss();
                     if (res) {
                         _this.reset();
-                        var alert_4 = _this.comn.createAlert("Success!", "Pin request submit successfully.");
-                        alert_4.present();
+                        var alert_5 = _this.comn.createAlert("Success!", "Pin request submit successfully.");
+                        alert_5.present();
                     }
                     else {
-                        var alert_5 = _this.comn.createAlert("Error!", "Error Occured ! Contact to admin.");
-                        alert_5.present();
+                        var alert_6 = _this.comn.createAlert("Error!", "Error Occured ! Contact to admin.");
+                        alert_6.present();
                     }
                 }, function (error) {
                     loading_1.dismiss();
@@ -4064,19 +4131,36 @@ var PinrequestPage = /** @class */ (function () {
                 console.log(_this.adet);
             }
             else {
-                var alert_6 = _this.comn.createAlert("Alert!", "Please Enter Number Of Pins.");
-                alert_6.present();
+                var alert_7 = _this.comn.createAlert("Alert!", "Please Enter Number Of Pins.");
+                alert_7.present();
             }
+        };
+        this.getproduct = function () {
+            var loading = _this.comn.presentLoadingDefault();
+            loading.present();
+            _this.api.getProduct().subscribe(function (res) {
+                loading.dismiss();
+                _this.product = res;
+                _this.product.forEach(function (x) {
+                    x.pin = 0;
+                    x.total = 0;
+                });
+                console.table(_this.product);
+            }, function (err) {
+                loading.dismiss();
+                console.log(err);
+            });
         };
         var sett = this.setting.getallSettings();
         this.userref = sett.fkmemid;
+        this.getproduct();
     }
     PinrequestPage.prototype.ionViewDidLoad = function () {
         console.log("ionViewDidLoad PinrequestPage");
     };
     PinrequestPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_3__angular_core__["n" /* Component */])({
-            selector: "page-pinrequest",template:/*ion-inline-start:"F:\Ankit_New\Personal\mlm\src\pages\pinrequest\pinrequest.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <ion-icon name="menu" menuToggle class=\'menu-icon\'></ion-icon>\n\n      ePIN Request\n\n    </ion-title>\n\n  </ion-navbar>\n\n  <!-- Filter-->\n\n  <ion-fab top right edge class="pin_menu">\n\n    <button ion-fab mini>\n\n      <ion-icon name="pricetag"></ion-icon>\n\n    </button>\n\n    <ion-fab-list>\n\n      <ul class="fab_list">\n\n        <li (click)="gotopindetail()"><a href="javascript:void(0)">\n\n            <ion-icon name="pricetag"></ion-icon>\n\n            <div class="clearfix"></div> PIN Details\n\n          </a></li>\n\n        <li>\n\n          <a href="javascript:void(0)">\n\n            <ion-icon name="pricetag"></ion-icon>\n\n            <div class="clearfix"></div> e-PIN Request\n\n          </a>\n\n        </li>\n\n        <li (click)="gotopintransafer()"><a href="javascript:void(0)">\n\n            <ion-icon name="pricetag"></ion-icon>\n\n            <div class="clearfix"></div> PIN Transfer\n\n          </a></li>\n\n        <li (click)="gotopinreport()">\n\n          <a href="javascript:void(0)">\n\n            <ion-icon name="pricetag"></ion-icon>\n\n            <div class="clearfix"></div> PIN Transfer Report\n\n          </a>\n\n        </li>\n\n      </ul>\n\n    </ion-fab-list>\n\n  </ion-fab>\n\n  <!-- /Filter-->\n\n</ion-header>\n\n<ion-content>\n\n  <ion-card>\n\n    <table>\n\n      <thead>\n\n        <tr>\n\n          <th>Plan</th>\n\n          <th>Amount</th>\n\n          <th>No. OF ePins</th>\n\n          <th>Total Amount</th>\n\n        </tr>\n\n      </thead>\n\n      <tbody>\n\n        <tr>\n\n          <td>Plan A 8500</td>\n\n          <td>{{objepin.productA.price}}</td>\n\n          <td><input (change)="pinchange(\'A\')" ion-input [(ngModel)]="objepin.productA.pin" /></td>\n\n          <td>{{objepin.productA.total}}</td>\n\n        </tr>\n\n        <tr>\n\n          <td>Plan B 4500</td>\n\n          <td>{{objepin.productB.price}}</td>\n\n          <td><input (change)="pinchange(\'B\')" ion-input [(ngModel)]="objepin.productB.pin" /></td>\n\n          <td>{{objepin.productB.total}}</td>\n\n        </tr>\n\n        <tr>\n\n          <td class="text-right" colspan="3"><strong>TOTAL &nbsp;</strong></td>\n\n          <td>{{objepin.total}}</td>\n\n        </tr>\n\n      </tbody>\n\n    </table>\n\n  </ion-card>\n\n  <ion-card>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>Payment Mode:</ion-label>\n\n      <ion-select (ionChange)="getmode()" interface="popover" placeholder="Select Payment Mode"\n\n        [(ngModel)]="objepin.pmode">\n\n        <ion-option value="Cheque">Cheque</ion-option>\n\n        <ion-option value="Cash">Cash</ion-option>\n\n        <ion-option value="BankersCheque">Bankers Cheque</ion-option>\n\n        <ion-option value="BankDeposit">Bank Deposit</ion-option>\n\n        <ion-option value="OnlineTransaction">Online Transaction</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <!-- condition Based -->\n\n    <ion-item>\n\n      <ion-label>Payment Amount:</ion-label>\n\n      <ion-input readonly [(ngModel)]="objepin.total" placeholder="0" [(ngModel)]="objepin.pinamount"></ion-input>\n\n    </ion-item>\n\n    <div *ngIf="! isCash">\n\n      <ion-item>\n\n        <ion-label class="lbl">Cheque/DD No/Bank Transaction No: </ion-label>\n\n\n\n      </ion-item>\n\n      <ion-item>\n\n\n\n        <ion-input [(ngModel)]="objepin.cdbtn" placeholder="Cheque/DD No/Bank Transaction No"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label class="lbl">Cheque/DD Date/Transaction Date: </ion-label>\n\n\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-datetime [(ngModel)]="objepin.cdtd" placeholder="Cheque/DD Date/Transaction Date"\n\n          displayFormat="DD/MM/YYYY">\n\n        </ion-datetime>\n\n        <!-- <ion-input [(ngModel)]="objepin.cdtd" placeholder="Cheque/DD Date/Transaction Date"></ion-input> -->\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label class="lbl">Bank Name: </ion-label>\n\n\n\n      </ion-item>\n\n      <ion-item>\n\n\n\n        <ion-input placeholder="Bank Name" [(ngModel)]="objepin.bank"></ion-input>\n\n      </ion-item>\n\n    </div>\n\n    <!-- condition Based END -->\n\n  </ion-card>\n\n  <ion-row>\n\n    <ion-col col-6>\n\n      <button ion-button (click)="epinrequest()">Submit</button>\n\n    </ion-col>\n\n    <ion-col col-6>\n\n      <button ion-button (click)="reset()">Reset</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-buttons>\n\n      <button ion-button>Contoso उजाला</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"F:\Ankit_New\Personal\mlm\src\pages\pinrequest\pinrequest.html"*/
+            selector: "page-pinrequest",template:/*ion-inline-start:"F:\Ankit_New\Personal\mlm\src\pages\pinrequest\pinrequest.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      <ion-icon name="menu" menuToggle class=\'menu-icon\'></ion-icon>\n\n      ePIN Request\n\n    </ion-title>\n\n  </ion-navbar>\n\n  <!-- Filter-->\n\n  <ion-fab top right edge class="pin_menu">\n\n    <button ion-fab mini>\n\n      <ion-icon name="pricetag"></ion-icon>\n\n    </button>\n\n    <ion-fab-list>\n\n      <ul class="fab_list">\n\n        <li (click)="gotopindetail()"><a href="javascript:void(0)">\n\n            <ion-icon name="pricetag"></ion-icon>\n\n            <div class="clearfix"></div> PIN Details\n\n          </a></li>\n\n        <li>\n\n          <a href="javascript:void(0)">\n\n            <ion-icon name="pricetag"></ion-icon>\n\n            <div class="clearfix"></div> e-PIN Request\n\n          </a>\n\n        </li>\n\n        <li (click)="gotopintransafer()"><a href="javascript:void(0)">\n\n            <ion-icon name="pricetag"></ion-icon>\n\n            <div class="clearfix"></div> PIN Transfer\n\n          </a></li>\n\n        <li (click)="gotopinreport()">\n\n          <a href="javascript:void(0)">\n\n            <ion-icon name="pricetag"></ion-icon>\n\n            <div class="clearfix"></div> PIN Transfer Report\n\n          </a>\n\n        </li>\n\n      </ul>\n\n    </ion-fab-list>\n\n  </ion-fab>\n\n  <!-- /Filter-->\n\n</ion-header>\n\n<ion-content>\n\n  <ion-card>\n\n    <table>\n\n      <thead>\n\n        <tr>\n\n          <th>Plan</th>\n\n          <th>Amount</th>\n\n          <th>No. OF ePins</th>\n\n          <th>Total Amount</th>\n\n        </tr>\n\n      </thead>\n\n      <tbody>\n\n        <tr *ngFor="let item of product;let i=index; ">\n\n          <td>{{item.ProductName}}</td>\n\n          <td>{{item.ProductPrice}}</td>\n\n          <td><input (change)="pinchange(i)" ion-input [(ngModel)]="item.pin" /></td>\n\n          <td>{{item.total}}</td>\n\n        </tr>\n\n        <tr style="display:none">\n\n          <td>Plan B 4500</td>\n\n          <td>{{objepin.productB.price}}</td>\n\n          <td><input (change)="pinchange(\'B\')" ion-input [(ngModel)]="objepin.productB.pin" /></td>\n\n          <td>{{objepin.productB.total}}</td>\n\n        </tr>\n\n        <tr>\n\n          <td class="text-right" colspan="3"><strong>TOTAL &nbsp;</strong></td>\n\n          <td>{{total}}</td>\n\n        </tr>\n\n      </tbody>\n\n    </table>\n\n  </ion-card>\n\n  <ion-card>\n\n\n\n\n\n    <ion-item>\n\n      <ion-label>Payment Mode:</ion-label>\n\n      <ion-select (ionChange)="getmode()" interface="popover" placeholder="Select Payment Mode"\n\n        [(ngModel)]="objepin.pmode">\n\n        <ion-option value="Cheque">Cheque</ion-option>\n\n        <ion-option value="Cash">Cash</ion-option>\n\n        <ion-option value="BankersCheque">Bankers Cheque</ion-option>\n\n        <ion-option value="BankDeposit">Bank Deposit</ion-option>\n\n        <ion-option value="OnlineTransaction">Online Transaction</ion-option>\n\n      </ion-select>\n\n    </ion-item>\n\n    <!-- condition Based -->\n\n    <ion-item>\n\n      <ion-label>Payment Amount:</ion-label>\n\n      <ion-input readonly [(ngModel)]="total" placeholder="0"></ion-input>\n\n    </ion-item>\n\n    <div *ngIf="! isCash">\n\n      <ion-item>\n\n        <ion-label class="lbl">Cheque/DD No/Bank Transaction No: </ion-label>\n\n\n\n      </ion-item>\n\n      <ion-item>\n\n\n\n        <ion-input [(ngModel)]="objepin.cdbtn" placeholder="Cheque/DD No/Bank Transaction No"></ion-input>\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label class="lbl">Cheque/DD Date/Transaction Date: </ion-label>\n\n\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-datetime [(ngModel)]="objepin.cdtd" placeholder="Cheque/DD Date/Transaction Date"\n\n          displayFormat="DD/MM/YYYY">\n\n        </ion-datetime>\n\n        <!-- <ion-input [(ngModel)]="objepin.cdtd" placeholder="Cheque/DD Date/Transaction Date"></ion-input> -->\n\n      </ion-item>\n\n      <ion-item>\n\n        <ion-label class="lbl">Bank Name: </ion-label>\n\n\n\n      </ion-item>\n\n      <ion-item>\n\n\n\n        <ion-input placeholder="Bank Name" [(ngModel)]="objepin.bank"></ion-input>\n\n      </ion-item>\n\n    </div>\n\n    <!-- condition Based END -->\n\n  </ion-card>\n\n  <ion-row>\n\n    <ion-col col-6>\n\n      <button ion-button (click)="epinrequest()">Submit</button>\n\n    </ion-col>\n\n    <ion-col col-6>\n\n      <button ion-button (click)="reset()">Reset</button>\n\n    </ion-col>\n\n  </ion-row>\n\n</ion-content>\n\n<ion-footer>\n\n  <ion-toolbar>\n\n    <ion-buttons>\n\n      <button ion-button>Contoso उजाला</button>\n\n    </ion-buttons>\n\n  </ion-toolbar>\n\n</ion-footer>\n\n'/*ion-inline-end:"F:\Ankit_New\Personal\mlm\src\pages\pinrequest\pinrequest.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_7__providers_apiservice_apiservice__["a" /* ApiserviceProvider */],
             __WEBPACK_IMPORTED_MODULE_4_ionic_angular__["h" /* NavController */],
