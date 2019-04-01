@@ -100,6 +100,9 @@ export class LoginPage {
         );
         alert.present();
       }
+    },error=>{
+      loading.dismiss();
+      console.error(error);
     });
   };
   GoToRegistration = () => {

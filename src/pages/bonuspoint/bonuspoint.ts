@@ -74,4 +74,5 @@ export class BonuspointPage {
       console.log(err);
     })
   }
+ 
 }

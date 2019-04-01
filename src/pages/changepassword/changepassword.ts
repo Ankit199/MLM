@@ -2,7 +2,7 @@ import { SettingsProvider } from "./../../providers/settings/settings";
 import { CommonfunctionProvider } from "./../../providers/commonfunction/commonfunction";
 import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { IonicPage, NavController, NavParams, AlertController } from "ionic-angular";
 import { DashboardPage } from "../dashboard/dashboard";
 
 /**
@@ -28,6 +28,7 @@ export class ChangepasswordPage {
   isValid: boolean = true;
   sett: any = [];
   constructor(
+    public alertCtrl:AlertController,
     public setting: SettingsProvider,
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -82,11 +83,12 @@ export class ChangepasswordPage {
       console.table(this.objmodel);
       this.api.chanagepassword(this.objmodel).subscribe(
         res => {
-          let alert = this.comn.createAlert(
-            "Success !",
-            "Password Change Successfully! "
-          );
-          alert.present();
+          this.showConfirmAlert();
+          // let alert = this.comn.createAlert(
+          //   "Success !",
+          //   "Password Change Successfully! "
+          // );
+          // alert.present(); 
         },
         err => {
           console.log(err);
@@ -97,5 +99,20 @@ export class ChangepasswordPage {
 
   cancle = () => {
     this.navCtrl.pop();
+  };
+  showConfirmAlert=()=> {
+    let alert = this.alertCtrl.create({
+        title: 'Success !',
+        message: 'Password Change Successfully!',
+        buttons: [           
+            {
+                text: 'OK',
+                handler: () => {
+             this.navCtrl.setRoot(DashboardPage);
+                }
+            }
+        ]
+    });
+    alert.present();
   };
 }
