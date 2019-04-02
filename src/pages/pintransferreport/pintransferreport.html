@@ -42,17 +42,20 @@
     <ion-row>
       <div class="float_wrapper" col-6>
         <ion-item>
-          <ion-datetime [(ngModel)]="objpintransfer.fdate" placeholder="From Date" displayFormat="DD/MM/YYYY">
-          </ion-datetime>
+          <!-- <ion-datetime [(ngModel)]="objpintransfer.fdate" placeholder="From Date" displayFormat="DD/MM/YYYY">
+          </ion-datetime> -->
+          <ion-input placeholder="From Date" readonly  type="text"   [(ngModel)]="objpintransfer.fdate" ></ion-input>
+       
         </ion-item>
-        <ion-icon name="calendar" class="money date"></ion-icon>
+        <ion-icon name="calendar" (click)='showdate("FROM")' class="money date"></ion-icon>
       </div>
       <div class="float_wrapper" col-6>
         <ion-item>
-          <ion-datetime [(ngModel)]="objpintransfer.tdate" placeholder="To Date" displayFormat="DD/MM/YYYY">
-          </ion-datetime>
+          <!-- <ion-datetime [(ngModel)]="objpintransfer.tdate"  placeholder="To Date" displayFormat="DD/MM/YYYY">
+          </ion-datetime> -->
+          <ion-input placeholder="To Date" readonly  type="text"   [(ngModel)]="objpintransfer.tdate" ></ion-input>
         </ion-item>
-        <ion-icon name="calendar" class="money date"></ion-icon>
+        <ion-icon (click)='showdate("TO")' name="calendar" class="money date"></ion-icon>
       </div>
     </ion-row>
     <ion-row>
@@ -96,6 +99,7 @@
     </ion-row>
   </ion-card>
   <ion-card>
+    <h3 *ngIf="result.length==0">No Record Found</h3>
     <table *ngIf="result.length>0">
       <thead>
         <tr>

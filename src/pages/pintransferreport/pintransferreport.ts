@@ -5,8 +5,9 @@ import { CommonfunctionProvider } from "./../../providers/commonfunction/commonf
 import { SettingsProvider } from "./../../providers/settings/settings";
 import { ApiserviceProvider } from "./../../providers/apiservice/apiservice";
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
-
+import { IonicPage, NavController, NavParams, DateTime } from "ionic-angular";
+import { DatePicker } from '@ionic-native/date-picker';
+import moment from "moment";
 @IonicPage()
 @Component({
   selector: "page-pintransferreport",
@@ -24,6 +25,7 @@ export class PintransferreportPage {
   result: any = [];
   sett: any = [];
   constructor(
+    public datePicker: DatePicker,
     public api: ApiserviceProvider,
     public setting: SettingsProvider,
     public comn: CommonfunctionProvider,
@@ -60,6 +62,15 @@ export class PintransferreportPage {
   };
 
   pinTransferReport = () => {
+    if(this.objpintransfer.fdate !=="" && this.objpintransfer.tdate=="" ){
+      let alert = this.comn.createAlert("Alert !", "Please select valid date range.");
+      alert.present();
+      return;
+    }else if(this.objpintransfer.fdate =="" && this.objpintransfer.tdate !=="" ){
+      let alert = this.comn.createAlert("Alert !", "Please select valid date range.");
+      alert.present();
+      return;
+    }
     this.result.length = 0;
     let loading = this.comn.presentLoadingDefault();
     loading.present();
@@ -71,7 +82,7 @@ export class PintransferreportPage {
         } else {
           let alert = this.comn.createAlert("Alert !", "No Record Found.");
           alert.present();
-          this.result = [];
+          this.result.length = 0;
         }
       },
       err => {
@@ -80,4 +91,28 @@ export class PintransferreportPage {
       }
     );
   };
-}
+
+  showdate = (type: any) => {
+
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
+    }).then(
+      date => {
+        let dd:any = moment(date).format("DD/MM/YYYY");
+        if (type == 'TO') {
+         
+          this.objpintransfer.tdate = dd.toString();
+        } else if (type == 'FROM') {
+          this.objpintransfer.fdate = dd.toString();
+        }
+
+       // console.log('Got date: ', d);
+      },
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+
+};
+
