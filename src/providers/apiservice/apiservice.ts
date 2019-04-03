@@ -187,4 +187,8 @@ export class ApiserviceProvider {
     let furl = `GuestProductRequest/ProductRequest/`;
     return this._http.post(this.url + furl, objguest, { headers });
   };
+  guestProductTrack=(guestid)=>{
+    this.refreshSettings();
+    return this._http.get(this.url + `DeliveryDetails/TrackDeliveryDetails/?MemId=${guestid}`, {});
+  }
 }
