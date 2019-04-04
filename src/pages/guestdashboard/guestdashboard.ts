@@ -23,7 +23,7 @@ export class GuestdashboardPage {
     public navParams: NavParams,
     public setting : SettingsProvider
   ) {
-    this.sub = Observable.interval(10000)
+    this.sub = Observable.interval(1000)
     .subscribe((val) => { this.productTrack();console.log('Guest Dasboard Called '); });
     }
 
