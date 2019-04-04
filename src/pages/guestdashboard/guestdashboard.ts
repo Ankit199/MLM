@@ -7,12 +7,6 @@ import "rxjs/add/operator/mergeMapTo";
 import "rxjs/add/operator/map";
 import { CommonfunctionProvider } from "../../providers/commonfunction/commonfunction";
 import { SettingsProvider } from "../../providers/settings/settings";
-/**
- * Generated class for the GuestdashboardPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -21,31 +15,31 @@ import { SettingsProvider } from "../../providers/settings/settings";
 })
 export class GuestdashboardPage { 
   Product:any=[];
+  sub:any='';
   constructor(
     public navCtrl: NavController,
     public comn: CommonfunctionProvider,
     public api: ApiserviceProvider,
     public navParams: NavParams,
     public setting : SettingsProvider
-  ) {this.productTrack();}
+  ) {
+    this.sub = Observable.interval(10000)
+    .subscribe((val) => { this.productTrack();console.log('Guest Dasboard Called '); });
+    }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad GuestdashboardPage");
-  }
-  //guestProductTrack
-  /* Live Reload Product  */
+  } 
+  /* Live Reload Product  Begin */
   productTrack=()=>{
-    let set = this.setting.getallSettings();
-    let loading = this.comn.presentLoadingDefault();
-    loading.present();
-    this.api.guestProductTrack(set.guest[0].fkid).subscribe((res:any)=>{
-      loading.dismiss();
+    let set = this.setting.getallSettings(); 
+    this.api.guestProductTrack(set.guest[0].fkid).subscribe((res:any)=>{    
       this.Product=res;
       console.log('************* PRoduct Deatail ***************');
       console.table(this.Product);
-    },err=>{
-      loading.dismiss();
+    },err=>{     
       console.log(err);
     })
   }
+   /* Live Reload Product END  */
 }
