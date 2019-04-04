@@ -80,7 +80,7 @@ export class ViewpackagePage {
       this.MemberInfo.noOfPins.push("1");
       this.objepin.pinamount = values.ProductPrice;
     }
-  }
+  } 
   getmodedispacth = () => {
     if (this.dispatch == "1") {
       this.isDispatch = false;

@@ -189,6 +189,10 @@ export class ApiserviceProvider {
   };
   guestProductTrack=(guestid)=>{
     this.refreshSettings();
-    return this._http.get(this.url + `DeliveryDetails/TrackDeliveryDetails/?MemId=${guestid}`, {});
+    return this._http.post(this.url + `DeliveryDetails/TrackDeliveryDetails/?MemId=${guestid}`, {});
+  }
+  ViewProfile=(memid)=>{
+    this.refreshSettings();
+    return this._http.post(this.url + `Registration/GetMemberProfile/?MemId=${memid}`, {});
   }
 }

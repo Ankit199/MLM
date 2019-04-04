@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header> 
   <ion-navbar>
     <ion-title>
       <ion-icon name="menu" menuToggle class='menu-icon'></ion-icon>
@@ -12,12 +12,40 @@
     <ion-col col-12>
       <ion-card>
         <h1>Welcome to contoso Ujala Family </h1>
-
-
       </ion-card>
     </ion-col>
 
 
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <ion-card>
+        <p>Product Track Information</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Sr. No.</th>
+              <th>Request No</th>
+              <th>Activation Code</th>
+              <th>Plan</th>
+              <th>Issue Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of Product;let i=index">
+              <td>{{i+1}}</td>
+              <td></td>
+              <td></td>
+    
+              <td></td>
+              <td></td>
+              <td> </td>
+            </tr>
+          </tbody>
+        </table>
+      </ion-card>
+    </ion-col>
   </ion-row>
 </ion-content>
 <ion-footer>
