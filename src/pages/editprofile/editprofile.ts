@@ -152,4 +152,7 @@ export class EditprofilePage {
     });
     alert.present();
   };
+  reset = () => {
+    this.navCtrl.pop();
+  };
 }

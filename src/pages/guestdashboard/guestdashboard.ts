@@ -35,6 +35,7 @@ export class GuestdashboardPage {
   /* Live Reload Product  Begin */
   productTrack = () => {
     let set = this.setting.getallSettings();
+    //set.guest[0].fkid
     this.api.guestProductTrack(set.guest[0].fkid).subscribe(
       (res: any) => {
         this.Product = res;

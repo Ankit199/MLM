@@ -1,4 +1,4 @@
-<ion-header> 
+<ion-header>
   <ion-navbar>
     <ion-title>
       <ion-icon name="menu" menuToggle class='menu-icon'></ion-icon>
@@ -17,30 +17,31 @@
 
 
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="Product.length>0">
     <ion-col col-12>
       <ion-card>
         <p>Product Track Information</p>
+        <br />
         <table>
           <thead>
             <tr>
               <th>Sr. No.</th>
-              <th>Request No</th>
-              <th>Activation Code</th>
-              <th>Plan</th>
-              <th>Issue Date</th>
-              <th></th>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Payment</th>
+              <th>Address</th>
+              <th>Delivered By</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of Product;let i=index">
               <td>{{i+1}}</td>
-              <td></td>
-              <td></td>
-    
-              <td></td>
-              <td></td>
-              <td> </td>
+              <td>{{item.ProductName}}</td>
+              <td>{{item.Qty}}</td>
+
+              <td>{{item.PaymentMode}}</td>
+              <td>{{item.DeliveredTo}} : {{item.Address}} , {{item.PinCode}}</td>
+              <td> {{item.deliveryboyMobileNo}}</td>
             </tr>
           </tbody>
         </table>

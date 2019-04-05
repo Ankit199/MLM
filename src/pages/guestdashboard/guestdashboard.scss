@@ -123,6 +123,33 @@ page-guestdashboard {
     font-size: 18px;
   }
 
+  table {
+    width: 100%;
+  }
+
+  table thead {
+    background: #ed0101;
+    color: #fff;
+  }
+
+  table th,
+  table td {
+    font-size: 11px;
+    text-align: left;
+    padding: 5px 2px;
+    border-bottom: solid 1px #e2e2e2;
+    border-right: solid 1px #e2e2e2;
+  }
+
+  table th:first-child,
+  table td:first-child {
+    border-left: solid 1px #e2e2e2;
+  }
+
+  table th {
+    font-weight: 700;
+  }
+
   @media only screen and (max-width: 360px) {
     ion-card p {
       font-size: 12px !important;
