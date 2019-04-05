@@ -33,7 +33,8 @@ import { RegisterPageModule } from "../pages/register/register.module";
 import { ApiserviceProvider } from "../providers/apiservice/apiservice";
 import { IonicStorageModule, Storage } from "@ionic/storage";
 import { HttpClientModule } from "@angular/common/http";
-import { DatePicker } from '@ionic-native/date-picker';
+import { DatePicker } from "@ionic-native/date-picker";
+import { EditprofilePageModule } from "../pages/editprofile/editprofile.module";
 export function provideSettings(storage: Storage) {
   /**
    * The Settings provider takes a set of default settings for your app.
@@ -50,7 +51,6 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [MyApp, HomePage],
   imports: [
-    
     ViewpackagePageModule,
     GuestdashboardPageModule,
     GustregistrationPageModule,
@@ -74,7 +74,7 @@ export function provideSettings(storage: Storage) {
     PintransferPageModule,
     PintransferreportPageModule,
     PinrequestPageModule,
-
+    EditprofilePageModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

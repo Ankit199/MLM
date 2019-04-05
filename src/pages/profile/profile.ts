@@ -3,13 +3,11 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { DashboardPage } from "../dashboard/dashboard";
 import { ApiserviceProvider } from "../../providers/apiservice/apiservice";
 import { CommonfunctionProvider } from "../../providers/commonfunction/commonfunction";
-
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Observable } from "rxjs/Observable";
+import "rxjs/add/observable/interval";
+import "rxjs/add/operator/mergeMapTo";
+import "rxjs/add/operator/map";
+import { EditprofilePage } from "../editprofile/editprofile";
 
 @IonicPage()
 @Component({
@@ -18,10 +16,16 @@ import { CommonfunctionProvider } from "../../providers/commonfunction/commonfun
 })
 export class ProfilePage {
   infouser: any = [];
+  sub:any='';
+  infousers:any=[];
   constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiserviceProvider, public comn: CommonfunctionProvider) {
-    let infousers:any = this.navParams.get("info");
-    this.ViewProfile(infousers[0].FK_MemId);
-   console.table(infousers.FK_MemId);
+     this.infousers = this.navParams.get("info");
+    /** Live Reload Data Begin */
+    this.sub = Observable.interval(1000)
+    .subscribe((val) => {   this.ViewProfile(this.infousers[0].FK_MemId); console.log('Profile Page Executed '); });
+    /** Live Reload Data close */
+  
+   console.table(this.infousers.FK_MemId);
   }
 
   ionViewDidLoad() {
@@ -39,6 +43,11 @@ export class ProfilePage {
     }, err => {
       loading.dismiss();
       console.log(err);
+    })
+  }
+  editProfie=()=>{
+    this.navCtrl.push(EditprofilePage,{
+      'fk_memid':this.infousers.FK_MemId
     })
   }
 }
