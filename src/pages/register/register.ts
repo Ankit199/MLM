@@ -1,5 +1,10 @@
 import { Component } from "@angular/core";
-import { IonicPage, NavController, NavParams, AlertController } from "ionic-angular";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  AlertController
+} from "ionic-angular";
 import { DashboardPage } from "../dashboard/dashboard";
 import { ApiserviceProvider } from "../../providers/apiservice/apiservice";
 import { CommonfunctionProvider } from "../../providers/commonfunction/commonfunction";
@@ -36,7 +41,7 @@ export class RegisterPage {
     type: ""
   };
   constructor(
-    public alertCtrl:AlertController,
+    public alertCtrl: AlertController,
     public comn: CommonfunctionProvider,
     public api: ApiserviceProvider,
     public navCtrl: NavController,
@@ -118,13 +123,6 @@ export class RegisterPage {
         loading.dismiss();
         if (res[0].MSG == "0") {
           this.showConfirmAlert(res);
-          // let alert = this.comn.createAlert(
-          //   "Success !",
-          //   `Member registration was successfully.please save your loginID is ${
-          //     res[0].LoginId
-          //   } and password is ${res[0].Password} .`
-          // );
-          // alert.present();
         } else {
           let alert = this.comn.createAlert("Alert!", res[0].Result);
           alert.present();
@@ -200,21 +198,20 @@ export class RegisterPage {
   reset = () => {
     this.navCtrl.pop();
   };
-  showConfirmAlert=(objres:any)=> {
+  showConfirmAlert = (objres: any) => {
     let alert = this.alertCtrl.create({
-        title: 'Success !',
-        message: `Member registration was successfully.please save your loginID is ${
-          objres[0].LoginId
-        } and password is ${objres[0].Password} .`,
-        buttons: [           
-            {
-                text: 'OK',
-                handler: () => {
-                  this.navCtrl.pop();
-                 
-                }
-            }
-        ]
+      title: "Success !",
+      message: `Member registration was successfully.please save your loginID is ${
+        objres[0].LoginId
+      } and password is ${objres[0].Password} .`,
+      buttons: [
+        {
+          text: "OK",
+          handler: () => {
+            this.navCtrl.pop();
+          }
+        }
+      ]
     });
     alert.present();
   };

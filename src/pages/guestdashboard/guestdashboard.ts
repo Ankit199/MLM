@@ -13,33 +13,38 @@ import { SettingsProvider } from "../../providers/settings/settings";
   selector: "page-guestdashboard",
   templateUrl: "guestdashboard.html"
 })
-export class GuestdashboardPage { 
-  Product:any=[];
-  sub:any='';
+export class GuestdashboardPage {
+  Product: any = [];
+  sub: any = "";
   constructor(
     public navCtrl: NavController,
     public comn: CommonfunctionProvider,
     public api: ApiserviceProvider,
     public navParams: NavParams,
-    public setting : SettingsProvider
+    public setting: SettingsProvider
   ) {
-    this.sub = Observable.interval(1000)
-    .subscribe((val) => { this.productTrack();console.log('Guest Dasboard Called '); });
-    }
+    this.sub = Observable.interval(1000).subscribe(val => {
+      this.productTrack();
+      console.log("Guest Dasboard Called ");
+    });
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad GuestdashboardPage");
-  } 
-  /* Live Reload Product  Begin */
-  productTrack=()=>{
-    let set = this.setting.getallSettings(); 
-    this.api.guestProductTrack(set.guest[0].fkid).subscribe((res:any)=>{    
-      this.Product=res;
-      console.log('************* PRoduct Deatail ***************');
-      console.table(this.Product);
-    },err=>{     
-      console.log(err);
-    })
   }
-   /* Live Reload Product END  */
+  /* Live Reload Product  Begin */
+  productTrack = () => {
+    let set = this.setting.getallSettings();
+    this.api.guestProductTrack(set.guest[0].fkid).subscribe(
+      (res: any) => {
+        this.Product = res;
+        console.log("************* PRoduct Deatail ***************");
+        console.table(this.Product);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  };
+  /* Live Reload Product END  */
 }

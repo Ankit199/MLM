@@ -187,12 +187,24 @@ export class ApiserviceProvider {
     let furl = `GuestProductRequest/ProductRequest/`;
     return this._http.post(this.url + furl, objguest, { headers });
   };
-  guestProductTrack=(guestid)=>{
+  guestProductTrack = guestid => {
     this.refreshSettings();
-    return this._http.post(this.url + `DeliveryDetails/TrackDeliveryDetails/?MemId=${guestid}`, {});
-  }
-  ViewProfile=(memid)=>{
+    return this._http.post(
+      this.url + `DeliveryDetails/TrackDeliveryDetails/?MemId=${guestid}`,
+      {}
+    );
+  };
+  ViewProfile = memid => {
     this.refreshSettings();
-    return this._http.post(this.url + `Registration/GetMemberProfile/?MemId=${memid}`, {});
-  }
+    return this._http.post(
+      this.url + `Registration/GetMemberProfile/?MemId=${memid}`,
+      {}
+    );
+  };
+  updateProfille = (objprofile): Promise<any> => {
+    this.refreshSettings();
+    return this._http
+      .post(this.url + `Registration/UpdateMemberProfile/`, objprofile)
+      .toPromise();
+  };
 }
