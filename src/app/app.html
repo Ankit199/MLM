@@ -3,7 +3,7 @@
     <ion-item (click)="GotoViewProfile()" class="profile-item" menuClose>
       <div class="profile-picture"> <img src="../../assets/images/no_img.jpg" /> </div>
       <h2 class="user-name">{{username}}</h2>
-      <div class="user-address">Lucknow</div>
+      <!-- <div class="user-address">Lucknow</div> -->
     </ion-item>
     <ion-list menuClose>
       <button ion-item (click)="GoToDashboard()">
@@ -28,11 +28,11 @@
       </button>
       <button *ngIf="isloginType==='main'" ion-item (click)="GoTopin()">
         <ion-icon name="pin"></ion-icon>
-        Pin
+        पिन (Pin)
       </button>
       <button *ngIf="isloginType==='main'" ion-item (click)="GoTocpass()">
         <ion-icon name="call"></ion-icon>
-        Change Password
+        पासवर्ड बदलें (Change Password)
       </button>
       <button ion-item (click)="GoToRules()">
         <ion-icon name="clipboard"></ion-icon>
@@ -47,7 +47,7 @@
       <ion-toolbar>
         <button ion-item nav-clear menu-close (click)="GoTologin()">
           <ion-icon name="exit" class="bg-red"></ion-icon>
-          Log Out
+          लोग आउट (Log Out)
         </button>
       </ion-toolbar>
     </ion-footer>
