@@ -166,7 +166,7 @@ export class ApiserviceProvider {
       "Content-Type",
       "application/json; charset=utf-8"
     );
-    let furl = `ProductDetails/UserEpinRequest/`;
+    let furl = `ProductDetails/UserEpinReques/`;
     return this._http.post(this.url + furl, JSON.stringify(objpinrequest), {
       headers
     });

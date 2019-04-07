@@ -52,7 +52,7 @@
         <tr *ngFor="let item of product;let i=index; ">
           <td>{{item.ProductName}}</td>
           <td>{{item.ProductPrice}}</td>
-          <td><input (change)="pinchange(i)" ion-input [(ngModel)]="item.pin" /></td>
+          <td><input (change)="pinchange(i)" type="number" ion-input [(ngModel)]="item.pin" /></td>
           <td>{{item.total}}</td>
         </tr>
         <tr style="display:none">

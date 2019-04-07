@@ -168,7 +168,7 @@ export class PinrequestPage {
             } else {
               let alert = this.comn.createAlert(
                 "Alert!",
-                "Plese enter Ban k Name."
+                "Plese enter Bank Name."
               );
               alert.present();
               return;
@@ -199,6 +199,9 @@ export class PinrequestPage {
         this.objepin.cdtd == "" ? null : this.objepin.cdtd;
       this.adet.bankName = this.objepin.bank;
       this.adet.createdBy = this.userref;
+      console.log("****************epin Request**********");
+      console.log(this.adet);
+
       this.api.epinrequest(this.adet).subscribe(
         (res: any) => {
           loading.dismiss();
