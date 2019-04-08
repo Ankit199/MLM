@@ -27389,6 +27389,33 @@ page-guestdashboard h2 span {
   font-size: 18px;
 }
 
+page-guestdashboard table {
+  width: 100%;
+}
+
+page-guestdashboard table thead {
+  background: #ed0101;
+  color: #fff;
+}
+
+page-guestdashboard table th,
+page-guestdashboard table td {
+  font-size: 11px;
+  text-align: left;
+  padding: 5px 2px;
+  border-bottom: solid 1px #e2e2e2;
+  border-right: solid 1px #e2e2e2;
+}
+
+page-guestdashboard table th:first-child,
+page-guestdashboard table td:first-child {
+  border-left: solid 1px #e2e2e2;
+}
+
+page-guestdashboard table th {
+  font-weight: 700;
+}
+
 @media only screen and (max-width: 360px) {
   page-guestdashboard ion-card p {
     font-size: 12px !important;
