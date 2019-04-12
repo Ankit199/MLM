@@ -33,7 +33,7 @@
           </a>
         </li>
       </ul>
-    </ion-fab-list>
+    </ion-fab-list> 
   </ion-fab>
   <!-- /Filter-->
 </ion-header>
@@ -42,9 +42,9 @@
     <ion-item>
       <ion-label>Select Plan:</ion-label>
       <ion-select [(ngModel)]="objpin.pid" interface="popover" placeholder="Select Plan">
-        <ion-option value="0">All</ion-option>
-        <ion-option value="1">Plan A 8500</ion-option>
-        <ion-option value="2">Plan B 4500</ion-option>
+        <ion-option  value="0">All</ion-option>
+        <ion-option *ngFor="let item of product;" value="{{item.PK_ProductId}}">{{item.ProductName}}</ion-option>
+        <!-- <ion-option value="2">Plan B 4500</ion-option> -->
       </ion-select>
     </ion-item>
     <ion-item>
@@ -97,7 +97,7 @@
 <ion-footer>
   <ion-toolbar>
     <ion-buttons>
-      <button ion-button>Contoso उजाला</button>
+      <button ion-button >Contoso उजाला</button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

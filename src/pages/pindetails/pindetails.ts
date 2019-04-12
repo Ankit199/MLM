@@ -18,17 +18,19 @@ import moment from "moment";
  */
 
 @IonicPage()
-@Component({
+@Component({ 
   selector: "page-pindetails",
   templateUrl: "pindetails.html"
 })
 export class PindetailsPage {
   sett: any;
+  product:any = [];
+
   epin: any = [];
   objpin = {
     fkid: "",
     pid: 0,
-    pin: 2
+    pin: 0
   };
   constructor(
     public setting: SettingsProvider,
@@ -41,6 +43,8 @@ export class PindetailsPage {
   ionViewDidLoad() {
     this.sett = this.setting.getallSettings();
     this.objpin.fkid = this.sett.dashboard[0].FK_MemId;
+    this.getproduct();
+    this.reset();
     console.log("ionViewDidLoad PintransferreportPage");
     console.log("ionViewDidLoad PindetailsPage");
   }
@@ -71,7 +75,7 @@ export class PindetailsPage {
   };
   reset = () => {
     this.objpin.pid = 0;
-    this.objpin.pin = 2;
+    this.objpin.pin = 0;
     this.epindetail();
   };
   gotopackage = () => {
@@ -85,5 +89,21 @@ export class PindetailsPage {
   };
   gotopinreport = () => {
     this.navCtrl.push(PintransferreportPage);
+  };
+  getproduct = () => {
+    let loading = this.comn.presentLoadingDefault();
+    loading.present();
+    this.api.getProduct().subscribe(
+      (res: any) => {
+        loading.dismiss();
+        this.product = res;
+        
+        console.table(this.product);
+      },
+      err => {
+        loading.dismiss();
+        console.log(err);
+      }
+    );
   };
 }
