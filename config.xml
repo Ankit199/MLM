@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.test.contosoujala" version="2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.test.contosoujala" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Contoso Ujala</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <description>MLM Concept App for real state and binary update </description>
+    <author email="ankitshukla1992@outlook.com" href="http://ionicframework.com/">VillagerBoy Group Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
